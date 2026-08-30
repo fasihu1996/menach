@@ -1,16 +1,32 @@
 import { createClient } from "@/lib/server";
 import { createServiceClient } from "@/lib/service";
+import { PostgrestError } from "@supabase/supabase-js";
 
-export async function getAllEntries(table: string, key: string) {
-    const supabase = await createClient();
-    const { data } = await supabase.from(table).select(key);
-    return data;
-}
+export async function getEntries(
+    table: string,
+    key: string,
+    filters?: Record<
+        string,
+        string | number | boolean | Array<string | number>
+    >,
+) {
+    const entries = Object.entries(filters ?? {});
+    const hasEmptyInFilter = entries.some(
+        ([, value]) => Array.isArray(value) && value.length === 0,
+    );
+    if (hasEmptyInFilter) {
+        return [];
+    }
 
-export async function getEntry(table: string, key: string) {
     const supabase = await createClient();
-    const { data } = await supabase.from(table).select(key);
-    supabase.from(table).select();
+    let query = supabase.from(table).select(key);
+    for (const [column, value] of entries) {
+        query =
+            Array.isArray(value) ?
+                query.in(column, value)
+            :   query.eq(column, value);
+    }
+    const { data } = await query;
     return data;
 }
 
@@ -33,10 +49,11 @@ export async function insertRow<T>(
     values: Record<string, unknown>,
 ): Promise<T> {
     const supabase = createServiceClient();
-    const { data } = await supabase
+    const { data, error } = await supabase
         .from(table)
         .insert(values)
         .select()
         .single();
+    if (error) throw new PostgrestError(error);
     return data as T;
 }
