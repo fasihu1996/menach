@@ -12,11 +12,16 @@ export type Item = {
     date: string | null;
     created_at: string;
     collection: number | null;
+    external_id: string;
 };
 
 export type Collection = {
     id: number;
     title: string;
+    institution: string;
+    city: string;
+    country: string;
+    created_at: string;
 };
 
 export type Media = {
