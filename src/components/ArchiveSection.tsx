@@ -13,6 +13,7 @@ import {
 interface ArchiveSectionProps {
     itemId: number;
     hasMedia: boolean;
+    outdatedArchive: boolean;
     initialTransfer: ArchivematicaTransfer | null;
     initialEvents: ArchivematicaTransferEvent[];
 }
@@ -20,6 +21,7 @@ interface ArchiveSectionProps {
 export default function ArchiveSection({
     itemId,
     hasMedia,
+    outdatedArchive,
     initialTransfer,
     initialEvents,
 }: ArchiveSectionProps) {
@@ -64,10 +66,26 @@ export default function ArchiveSection({
         );
     } else if (transfer.status === "complete") {
         content = (
-            <p className="text-sm text-muted-foreground">
-                Last archived on{" "}
-                {new Date(transfer.updated_at).toLocaleString()}
-            </p>
+            <div className="flex flex-col gap-2">
+                <p className="text-sm text-muted-foreground">
+                    Last archived on{" "}
+                    {new Date(transfer.updated_at).toLocaleString()}
+                </p>
+                {outdatedArchive ?
+                    <form action={formAction}>
+                        <Button
+                            type="submit"
+                            variant="outline"
+                            size="sm"
+                            disabled={!hasMedia || isPending}
+                        >
+                            {isPending ?
+                                "Starting…"
+                            :   "Re-archive (new media added)"}
+                        </Button>
+                    </form>
+                :   null}
+            </div>
         );
     } else {
         const canRetry =

@@ -37,4 +37,5 @@ export type Media = {
 export type Asset = {
     item: number;
     media: number;
+    created_at: string;
 };

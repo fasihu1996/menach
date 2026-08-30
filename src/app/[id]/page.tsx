@@ -38,10 +38,11 @@ export default async function ItemDetailPage({
             )
         :   null;
 
-    const assets = (await getEntries("assets", "item,media", {
-        item: item.id,
-    })) as Asset[] | null;
-    const mediaIds = [...new Set((assets ?? []).map((asset) => asset.media))];
+    const assets =
+        ((await getEntries("assets", "item,media,created_at", {
+            item: item.id,
+        })) as Asset[] | null) ?? [];
+    const mediaIds = [...new Set(assets.map((asset) => asset.media))];
     const attachedMedia =
         ((await getEntries(
             "media",
@@ -52,6 +53,13 @@ export default async function ItemDetailPage({
     const activeTransfer = await getCurrentTransferForItem(item.id);
     const transferEvents =
         activeTransfer ? await getTransferEvents(activeTransfer.id) : [];
+    const outdatedArchive =
+        activeTransfer?.status === "complete" &&
+        assets.some(
+            (asset) =>
+                new Date(asset.created_at) >
+                new Date(activeTransfer.updated_at),
+        );
 
     return (
         <div className="flex flex-col gap-6 p-4">
@@ -86,6 +94,7 @@ export default async function ItemDetailPage({
                 key={activeTransfer?.id ?? "none"}
                 itemId={item.id}
                 hasMedia={attachedMedia.length > 0}
+                outdatedArchive={outdatedArchive}
                 initialTransfer={activeTransfer}
                 initialEvents={transferEvents}
             />
