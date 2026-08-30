@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import ThemeToggle from "./ThemeToggle";
 import { Button } from "./ui/button";
 import Search from "./Search";
@@ -19,7 +20,9 @@ export default function Navbar() {
                         MENACH
                     </Link>
                 </div>
-                <Search className="flex justify-center" />
+                <Suspense fallback={<div className="flex justify-center" />}>
+                    <Search className="flex justify-center" />
+                </Suspense>
                 <div className="flex items-center justify-end gap-1 sm:gap-4">
                     <Button
                         variant="ghost"
