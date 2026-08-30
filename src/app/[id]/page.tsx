@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import MediaCard from "@/components/MediaCard";
+import MediaViewer from "@/components/MediaViewer";
 import ArchiveSection from "@/components/ArchiveSection";
 import { getEntries, getById } from "@/utils/supabase";
 import { getObjectURL } from "@/utils/s3";
@@ -90,24 +90,15 @@ export default async function ItemDetailPage({
                 initialEvents={transferEvents}
             />
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {attachedMedia.map((entry) => (
-                    <MediaCard
-                        key={entry.id}
-                        media={entry}
-                        imageURL={
-                            entry.storage_key ?
-                                getObjectURL(entry.storage_key)
-                            :   null
-                        }
-                    />
-                ))}
-                {attachedMedia.length === 0 ?
-                    <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
-                        No media attached yet.
-                    </div>
-                :   null}
-            </div>
+            <MediaViewer
+                media={attachedMedia.map((entry) => ({
+                    ...entry,
+                    url:
+                        entry.storage_key ?
+                            getObjectURL(entry.storage_key)
+                        :   null,
+                }))}
+            />
         </div>
     );
 }
