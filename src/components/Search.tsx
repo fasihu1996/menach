@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "./ui/input";
 import { SearchIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -11,21 +11,29 @@ interface SearchProps {
 }
 
 export default function Search({ className }: SearchProps) {
-    function handleSearch(term: string) {
-        console.log(term);
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
+    function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+        e.preventDefault();
+        const term = (new FormData(e.currentTarget).get("q") as string)?.trim();
+        router.push(term ? `/search?q=${encodeURIComponent(term)}` : "/search");
     }
 
     return (
-        <div className={cn("relative flex", className)}>
+        <form
+            className={cn("relative flex", className)}
+            onSubmit={handleSubmit}
+        >
             <Input
-                className="peer block w-full rounded-md placeholder:text-gray-500 pl-2 text-sm"
+                key={searchParams.get("q") ?? ""}
+                name="q"
+                defaultValue={searchParams.get("q") ?? ""}
+                className="peer block w-full rounded-md pl-2 text-sm placeholder:text-gray-500"
                 placeholder="Input search term..."
-                onChange={(e) => {
-                    handleSearch(e.target.value);
-                }}
             />
             <Button
-                type="button"
+                type="submit"
                 variant="default"
                 aria-label="Search"
                 size="icon"
@@ -33,6 +41,6 @@ export default function Search({ className }: SearchProps) {
             >
                 <SearchIcon className="h-4 w-4" />
             </Button>
-        </div>
+        </form>
     );
 }
