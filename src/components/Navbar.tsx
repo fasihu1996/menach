@@ -10,7 +10,7 @@ export default function Navbar() {
         <nav
             className={`bg-background/95  sticky top-0 z-50 w-full border-b backdrop-blur`}
         >
-            <div className="grid h-12 grid-cols-3 items-center px-2 sm:h-16 sm:px-4">
+            <div className="mx-auto grid h-12 max-w-5xl grid-cols-3 items-center px-2 sm:h-16 sm:px-4">
                 <div className="flex items-center">
                     <Link
                         href="/"
@@ -24,7 +24,12 @@ export default function Navbar() {
                     <Button
                         variant="ghost"
                         nativeButton={false}
-                        render={<Link href="/database">Database</Link>}
+                        render={<Link href="/">Items</Link>}
+                    />
+                    <Button
+                        variant="ghost"
+                        nativeButton={false}
+                        render={<Link href="/collections">Collections</Link>}
                     />
                     <ThemeToggle />
                 </div>

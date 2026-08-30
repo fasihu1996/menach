@@ -8,17 +8,20 @@ interface ImageCardProps {
 
 export default function ImageCard({ title, imageURL }: ImageCardProps) {
     return (
-        <Card>
+        <Card className="h-full">
             <CardHeader>
                 <div className="p-2">
                     {imageURL ?
-                        <Image
-                            src={imageURL}
-                            alt={title}
-                            width={400}
-                            height={400}
-                            unoptimized
-                        />
+                        <div className="relative aspect-square w-full overflow-hidden rounded-md">
+                            <Image
+                                src={imageURL}
+                                alt={title}
+                                fill
+                                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                                className="object-cover"
+                                unoptimized
+                            />
+                        </div>
                     :   <div className="flex aspect-square w-full items-center justify-center rounded-md border border-dashed text-sm text-muted-foreground">
                             No image available
                         </div>
@@ -26,7 +29,7 @@ export default function ImageCard({ title, imageURL }: ImageCardProps) {
                 </div>
             </CardHeader>
             <CardContent>
-                <CardTitle className="p-1 text-base font-bold">
+                <CardTitle className="truncate p-1 text-base font-bold">
                     {title}
                 </CardTitle>
             </CardContent>
