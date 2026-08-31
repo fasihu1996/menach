@@ -5,6 +5,7 @@ import CollectionCard from "@/components/CollectionCard";
 import { getEntries } from "@/utils/supabase";
 import { getObjectURL } from "@/utils/s3";
 import type { Item, Collection, Asset, Media } from "@/lib/types";
+import { getTranslations } from "next-intl/server";
 
 type ItemDoc = Pick<Item, "id" | "title" | "description" | "external_id"> & {
     kind: "item";
@@ -19,6 +20,7 @@ export default async function SearchPage({
 }: {
     searchParams: Promise<{ q?: string }>;
 }) {
+    const t = await getTranslations("Search");
     const { q } = await searchParams;
     const query = (q ?? "").trim();
 
@@ -96,11 +98,13 @@ export default async function SearchPage({
     return (
         <div className="flex flex-col gap-8 p-4">
             <h1 className="font-heading text-2xl font-bold">
-                {query ? `Search results for "${query}"` : "All items and collections"}
+                {query ? `${t("results")} "${query}"` : t("all")}
             </h1>
 
             <section className="flex flex-col gap-4">
-                <h2 className="font-heading text-lg font-semibold">Items</h2>
+                <h2 className="font-heading text-lg font-semibold">
+                    {t("items")}
+                </h2>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {resolvedItems.map(({ id, title, imageURL }) => (
                         <Link key={id} href={`/${id}`} className="h-full">
@@ -109,7 +113,7 @@ export default async function SearchPage({
                     ))}
                     {resolvedItems.length === 0 ?
                         <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
-                            No matching items.
+                            {t("no-items-found")}
                         </div>
                     :   null}
                 </div>
@@ -117,11 +121,18 @@ export default async function SearchPage({
 
             <section className="flex flex-col gap-4">
                 <h2 className="font-heading text-lg font-semibold">
-                    Collections
+                    {t("collections")}
                 </h2>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {resolvedCollections.map(
-                        ({ id, title, institution, city, country, itemCount }) => (
+                        ({
+                            id,
+                            title,
+                            institution,
+                            city,
+                            country,
+                            itemCount,
+                        }) => (
                             <Link
                                 key={id}
                                 href={`/collections/${id}`}
@@ -139,7 +150,7 @@ export default async function SearchPage({
                     )}
                     {resolvedCollections.length === 0 ?
                         <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
-                            No matching collections.
+                            {t("no-coll-found")}
                         </div>
                     :   null}
                 </div>

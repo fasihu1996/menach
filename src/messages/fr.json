@@ -1,0 +1,82 @@
+{
+    "Metadata": {
+        "title": "MENACH",
+        "description": "Patrimoine culturel numérique au Moyen-Orient et en Afrique du Nord "
+    },
+    "LangSelector": {
+        "ar": "Arabe",
+        "fr": "Français",
+        "en": "Anglais"
+    },
+    "DatabasePage": {
+        "new-item": "Nouvel article",
+        "no-items-found": "Aucun élément trouvé."
+    },
+    "Navbar": {
+        "items": "Éléments",
+        "collections": "Collections"
+    },
+    "ArchiveSection": {
+        "starting": "Début...",
+        "archive": "Archiver vers Archivematica",
+        "last-archived": "Dernière archivage le",
+        "rearchive": "Réarchiver",
+        "retry": "Réessayer l'archive",
+        "archival-transfer": "Transfert d'archives"
+    },
+    "Detailpage": {
+        "upload": "Télécharger"
+    },
+    "UploadPage": {
+        "upload-media": "Téléverser des fichiers multimédias vers"
+    },
+    "UploadForm": {
+        "file": "Fichier",
+        "title": "Titre",
+        "desc": "Description",
+        "date": "Date",
+        "media-type": "Type de média",
+        "remove": "Supprimer",
+        "add-another": "Ajouter un autre fichier",
+        "upload": "Télécharger",
+        "uploading": "Téléchargement ..."
+    },
+    "Collections": {
+        "new-collection": "Nouvelle collection",
+        "no-found": "Aucune collection trouvée"
+    },
+    "Collections-Detailpage": {
+        "no-found": "Cette collection ne contient encore aucun élément."
+    },
+    "CollectionsForm": {
+        "title": "Titre",
+        "institution": "Institution",
+        "city": "Ville",
+        "country": "Pays",
+        "creating": "Créant...",
+        "create": "Créer une collection"
+    },
+    "ItemForm": {
+        "title": "Titre",
+        "desc": "Description",
+        "date": "Date",
+        "collection": "Collection",
+        "creating": "Créant...",
+        "create": "Créer une collection"
+    }, 
+    "Search": {
+        "results": "Résultats de la recherche pour ",
+        "all": "Tous les éléments et collections",
+        "items": "Éléments",
+        "no-items-found": "Aucun éléments correspondant.",
+        "collections": "Collections",
+        "no-coll-found": "Aucune collection correspondante."
+    },
+    "Components": {
+        "no-image": "Aucune image disponible",
+        "no-media": "Aucun fichier multimédia n'a encore été joint.",
+        "open-file": "Ouvrir le fichier",
+        "input-search": "Saisissez un terme de recherche ...",
+        "toggle-theme": "Changer de thème"
+    }
+}

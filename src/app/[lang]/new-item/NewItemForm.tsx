@@ -14,12 +14,14 @@ import {
 } from "@/components/ui/select";
 import { createItem } from "./actions";
 import type { Collection } from "@/lib/types";
+import { useTranslations } from "next-intl";
 
 interface NewItemFormProps {
     collections: Collection[];
 }
 
 export default function NewItemForm({ collections }: NewItemFormProps) {
+    const t = useTranslations("ItemForm");
     const [state, formAction, isPending] = useActionState(createItem, null);
     const collectionItems = Object.fromEntries(
         collections.map((collection) => [
@@ -31,22 +33,22 @@ export default function NewItemForm({ collections }: NewItemFormProps) {
     return (
         <form action={formAction} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="title">Title</Label>
+                <Label htmlFor="title">{t("title")}</Label>
                 <Input id="title" name="title" required />
             </div>
 
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="description">Description</Label>
+                <Label htmlFor="description">{t("desc")}</Label>
                 <Textarea id="description" name="description" required />
             </div>
 
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="date">Date</Label>
+                <Label htmlFor="date">{t("date")}</Label>
                 <Input id="date" name="date" type="date" />
             </div>
 
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="collection">Collection</Label>
+                <Label htmlFor="collection">{t("collection")}</Label>
                 <Select name="collection" items={collectionItems}>
                     <SelectTrigger id="collection" className="w-full">
                         <SelectValue placeholder="None" />
@@ -71,7 +73,7 @@ export default function NewItemForm({ collections }: NewItemFormProps) {
             :   null}
 
             <Button type="submit" disabled={isPending}>
-                {isPending ? "Creating…" : "Create item"}
+                {isPending ? t("creating") : t("create")}
             </Button>
         </form>
     );

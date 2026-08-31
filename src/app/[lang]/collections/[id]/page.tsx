@@ -4,12 +4,14 @@ import ImageCard from "@/components/ImageCard";
 import { getEntries, getById } from "@/utils/supabase";
 import { getObjectURL } from "@/utils/s3";
 import type { Collection, Item, Asset, Media } from "@/lib/types";
+import { getTranslations } from "next-intl/server";
 
 export default async function CollectionDetailPage({
     params,
 }: {
     params: Promise<{ id: string }>;
 }) {
+    const t = await getTranslations("Collections-Detailpage");
     const { id } = await params;
     const collectionId = Number(id);
 
@@ -75,7 +77,7 @@ export default async function CollectionDetailPage({
                 ))}
                 {resolvedItems.length === 0 ?
                     <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
-                        No items in this collection yet.
+                        {t("no-found")}
                     </div>
                 :   null}
             </div>

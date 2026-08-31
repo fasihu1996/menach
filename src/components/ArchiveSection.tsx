@@ -9,6 +9,7 @@ import {
     type ArchivematicaTransfer,
     type ArchivematicaTransferEvent,
 } from "@/utils/archive/types";
+import { useTranslations } from "next-intl";
 
 interface ArchiveSectionProps {
     itemId: number;
@@ -25,6 +26,7 @@ export default function ArchiveSection({
     initialTransfer,
     initialEvents,
 }: ArchiveSectionProps) {
+    const t = useTranslations("ArchiveSection");
     const action = startArchivalTransfer.bind(null, itemId);
     const [state, formAction, isPending] = useActionState(action, null);
 
@@ -60,7 +62,7 @@ export default function ArchiveSection({
                     variant="outline"
                     disabled={!hasMedia || isPending}
                 >
-                    {isPending ? "Starting…" : "Archive to Archivematica"}
+                    {isPending ? t("starting") : t("archive")}
                 </Button>
             </form>
         );
@@ -68,7 +70,7 @@ export default function ArchiveSection({
         content = (
             <div className="flex flex-col gap-2">
                 <p className="text-sm text-muted-foreground">
-                    Last archived on{" "}
+                    {t("last-archived")}{" "}
                     {new Date(transfer.updated_at).toLocaleString()}
                 </p>
                 {outdatedArchive ?
@@ -79,9 +81,7 @@ export default function ArchiveSection({
                             size="sm"
                             disabled={!hasMedia || isPending}
                         >
-                            {isPending ?
-                                "Starting…"
-                            :   "Re-archive (new media added)"}
+                            {isPending ? t("starting") : t("rearchive")}
                         </Button>
                     </form>
                 :   null}
@@ -96,7 +96,7 @@ export default function ArchiveSection({
                 <CardContent className="flex flex-col gap-2">
                     <div className="flex items-center justify-between gap-4">
                         <span className="text-sm font-medium">
-                            Archival transfer
+                            {t("archival-transfer")}
                         </span>
                         <span className="text-xs text-muted-foreground">
                             {transfer.status}
@@ -133,7 +133,7 @@ export default function ArchiveSection({
                                 size="sm"
                                 disabled={!hasMedia || isPending}
                             >
-                                {isPending ? "Starting…" : "Retry archive"}
+                                {isPending ? t("starting") : t("retry")}
                             </Button>
                         </form>
                     :   null}

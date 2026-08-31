@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { getEntries } from "@/utils/supabase";
 import type { Collection, Item } from "@/lib/types";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 export default async function CollectionsPage() {
+    const t = await getTranslations("Collections");
     const collections = (await getEntries(
         "collections",
         "id,title,institution,city,country",
@@ -27,7 +29,11 @@ export default async function CollectionsPage() {
             <div className="mb-4 flex justify-end">
                 <Button
                     nativeButton={false}
-                    render={<Link href="/new-collection">New collection</Link>}
+                    render={
+                        <Link href="/new-collection">
+                            {t("new-collection")}
+                        </Link>
+                    }
                 />
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -50,7 +56,7 @@ export default async function CollectionsPage() {
                 )}
                 {resolvedEntries.length === 0 ?
                     <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
-                        No collections found.
+                        {t("no-found")}
                     </div>
                 :   null}
             </div>

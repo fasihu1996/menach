@@ -6,6 +6,7 @@ import { FileText, Film, Music, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { Media, MediaType } from "@/lib/types";
+import { useTranslations } from "next-intl";
 
 interface MediaViewerProps {
     media: (Media & { url: string | null })[];
@@ -19,13 +20,14 @@ const mediaTypeIcon: Partial<Record<MediaType, typeof FileText>> = {
 };
 
 export default function MediaViewer({ media }: MediaViewerProps) {
+    const t = useTranslations("Components");
     const [selectedId, setSelectedId] = useState(media[0]?.id ?? null);
     const selected = media.find((entry) => entry.id === selectedId) ?? media[0];
 
     if (!selected) {
         return (
             <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
-                No media attached yet.
+                {t("no-media")}
             </div>
         );
     }
@@ -74,7 +76,7 @@ export default function MediaViewer({ media }: MediaViewerProps) {
                                     rel="noreferrer"
                                     className="text-sm font-medium text-primary underline"
                                 >
-                                    Open file
+                                    {t("open-file")}
                                 </a>
                             :   null}
                         </div>

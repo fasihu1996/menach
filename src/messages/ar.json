@@ -1,0 +1,82 @@
+{
+    "Metadata": {
+        "title": "ميناش",
+        "description": "التراث الثقافي الرقمي في الشرق الأوسط وشمال أفريقيا"
+    },
+    "LangSelector": {
+        "ar": "عربي",
+        "fr": "فرنسي",
+        "en": "إنجليزي"
+    },
+    "DatabasePage": {
+        "new-item": "جديد مادة",
+        "no-items-found": "لم يتم العثور على عناصر"
+    },
+    "Navbar": {
+        "items": "مادة",
+        "collections": "المجموعات"
+    },
+    "ArchiveSection": {
+        "starting": "...شروع",
+        "archive": "...أرشفة إلى",
+        "last-archived": "آخر أرشفة في",
+        "rearchive": "إعادة الأرشفة",
+        "retry": "إعادة محاولة الأرشفة",
+        "archival-transfer": "نقل المواد الأرشيفية"
+    },
+    "Detailpage": {
+        "upload": "رفع"
+    },
+    "UploadPage": {
+        "upload-media": "تحميل الوسائط إلى"
+    },
+    "UploadForm": {
+        "file": "ملف",
+        "title": "العنوان",
+        "desc": "وصف",
+        "date": "التاريخ",
+        "media-type": "نوع الوسائط",
+        "remove": "إزالة",
+        "add-another": "إضافة ملف آخر",
+        "upload": "رفع",
+        "uploading": "...التحميل"
+    },
+    "Collections": {
+        "new-collection": "مجموعة جديدة",
+        "no-found": "لم يتم العثور على أي مجموعات"
+    },
+    "Collections-Detailpage": {
+        "no-found": "_لا توجد عناصر في هذه المجموعة حتى الآن"
+    },
+    "CollectionsForm": {
+        "title": "العنوان",
+        "institution": "المؤسسة",
+        "city": "المدينة",
+        "country": "البلد",
+        "creating": "إنشاء",
+        "create": "إنشاء مجموعة"
+    },
+    "ItemForm": {
+        "title": "العنوان",
+        "desc": "وصف",
+        "date": "التاريخ",
+        "collections": "مجموعة",
+        "creating": "إنشاء",
+        "create": "إنشاء عنصر"
+    }, 
+    "Search": {
+        "results": " نتائج البحث عن",
+        "all": "جميع العناصر والمجموعات",
+        "items": "مادة",
+        "no-items-found": "لا توجد نتائج مطابقة",
+        "collections": "مجموعة",
+        "no-coll-found": "لا توجد مجموعات مطابقة"
+    },
+    "Components": {
+        "no-image": "لا توجد صورة متاحة",
+        "no-media": "لم يتم إرفاق أي ملفات وسائط حتى الآن",
+        "open-file": "فتح الملف",
+        "input-search": "...أدخل مصطلح البحث",
+        "toggle-theme": "تبديل السمة"
+    }
+}

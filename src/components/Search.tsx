@@ -6,12 +6,14 @@ import { Input } from "./ui/input";
 import { SearchIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
+import { useTranslations } from "next-intl";
 
 interface SearchProps {
     className?: string;
 }
 
 export default function Search({ className }: SearchProps) {
+    const t = useTranslations("Components");
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -36,22 +38,22 @@ export default function Search({ className }: SearchProps) {
                 <SearchIcon className="h-4 w-4" />
             </Link>
             <form
-                className="relative hidden min-w-0 flex-1 sm:flex"
+                className="relative hidden w-full min-w-0 max-w-sm sm:flex"
                 onSubmit={handleSubmit}
             >
                 <Input
                     key={searchParams.get("q") ?? ""}
                     name="q"
                     defaultValue={searchParams.get("q") ?? ""}
-                    className="peer block w-full rounded-md pl-2 text-sm placeholder:text-gray-500"
-                    placeholder="Input search term..."
+                    className="peer block w-full rounded-md ps-2 text-sm placeholder:text-gray-500"
+                    placeholder={t("input-search")}
                 />
                 <Button
                     type="submit"
                     variant="default"
                     aria-label="Search"
                     size="icon"
-                    className="absolute right-0"
+                    className="absolute end-0"
                 >
                     <SearchIcon className="h-4 w-4" />
                 </Button>

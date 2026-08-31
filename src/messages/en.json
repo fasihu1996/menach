@@ -1,0 +1,82 @@
+{
+    "Metadata": {
+        "title": "MENACH",
+        "description": "Digital Cultural Heritage in Middle East and North Africa"
+    },
+    "LangSelector": {
+        "ar": "Arabic",
+        "fr": "French",
+        "en": "English"
+    },
+    "DatabasePage": {
+        "new-item": "New item",
+        "no-items-found": "No items found."
+    },
+    "Navbar": {
+        "items": "Items",
+        "collections": "Collections"
+    },
+    "ArchiveSection": {
+        "starting": "Starting...",
+        "archive": "Archive to Archivematica",
+        "last-archived": "Last archived on",
+        "rearchive": "Re-archive",
+        "retry": "Retry archive",
+        "archival-transfer": "Archival transfer"
+    },
+    "Detailpage": {
+        "upload": "Upload"
+    },
+    "UploadPage": {
+        "upload-media": "Upload media to"
+    },
+    "UploadForm": {
+        "file": "File",
+        "title": "Title",
+        "desc": "Description",
+        "date": "Date",
+        "media-type": "Media type",
+        "remove": "Remove",
+        "add-another": "Add another file",
+        "upload": "Upload",
+        "uploading": "Uploading ..."
+    },
+    "Collections": {
+        "new-collection": "New collection",
+        "no-found": "No collections found"
+    },
+    "Collections-Detailpage": {
+        "no-found": "No items in this collection yet."
+    },
+    "CollectionsForm": {
+        "title": "Title",
+        "institution": "Institution",
+        "city": "City",
+        "country": "Country",
+        "creating": "Creating...",
+        "create": "Create collection"
+    },
+    "ItemForm": {
+        "title": "Title",
+        "desc": "Description",
+        "date": "Date",
+        "collection": "Collection",
+        "creating": "Creating...",
+        "create": "Create collection"
+    }, 
+    "Search": {
+        "results": "Search results for ",
+        "all": "All items and collections",
+        "items": "Items",
+        "no-items-found": "No matching items.",
+        "collections": "Collections",
+        "no-coll-found": "No matching collections."
+    },
+    "Components": {
+        "no-image": "No image available",
+        "no-media": "No media attached yet.",
+        "open-file": "Open file",
+        "input-search": "Input search term ...",
+        "toggle-theme": "Toggle theme"
+    }
+}

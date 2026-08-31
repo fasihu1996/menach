@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { uploadMedia } from "./actions";
 import type { MediaType } from "@/lib/types";
+import { useTranslations } from "next-intl";
 
 const MEDIA_TYPES: MediaType[] = [
     "StillImage",
@@ -29,6 +30,8 @@ interface UploadFormProps {
 }
 
 export default function UploadForm({ itemId }: UploadFormProps) {
+    const t = useTranslations("UploadForm");
+
     const action = uploadMedia.bind(null, itemId);
     const [state, formAction, isPending] = useActionState(action, null);
 
@@ -51,7 +54,8 @@ export default function UploadForm({ itemId }: UploadFormProps) {
                 <Card key={id}>
                     <CardContent className="flex flex-col gap-3">
                         <div className="flex flex-col gap-1.5">
-                            <Label htmlFor={`file-${id}`}>File</Label>
+                            <Label htmlFor={`file-${id}`}>{t("file")}</Label>
+                            {/* this cant be localised since its a native html element */}
                             <Input
                                 id={`file-${id}`}
                                 name={`file-${id}`}
@@ -61,7 +65,7 @@ export default function UploadForm({ itemId }: UploadFormProps) {
                         </div>
 
                         <div className="flex flex-col gap-1.5">
-                            <Label htmlFor={`title-${id}`}>Title</Label>
+                            <Label htmlFor={`title-${id}`}>{t("title")}</Label>
                             <Input
                                 id={`title-${id}`}
                                 name={`title-${id}`}
@@ -71,7 +75,7 @@ export default function UploadForm({ itemId }: UploadFormProps) {
 
                         <div className="flex flex-col gap-1.5">
                             <Label htmlFor={`description-${id}`}>
-                                Description
+                                {t("desc")}
                             </Label>
                             <Textarea
                                 id={`description-${id}`}
@@ -80,7 +84,7 @@ export default function UploadForm({ itemId }: UploadFormProps) {
                         </div>
 
                         <div className="flex flex-col gap-1.5">
-                            <Label htmlFor={`date-${id}`}>Date</Label>
+                            <Label htmlFor={`date-${id}`}>{t("date")}</Label>
                             <Input
                                 id={`date-${id}`}
                                 name={`date-${id}`}
@@ -90,7 +94,7 @@ export default function UploadForm({ itemId }: UploadFormProps) {
 
                         <div className="flex flex-col gap-1.5">
                             <Label htmlFor={`mediaType-${id}`}>
-                                Media type
+                                {t("media-type")}
                             </Label>
                             <Select
                                 name={`mediaType-${id}`}
@@ -123,7 +127,7 @@ export default function UploadForm({ itemId }: UploadFormProps) {
                                 size="sm"
                                 onClick={() => removeBlock(id)}
                             >
-                                Remove
+                                {t("remove")}
                             </Button>
                         :   null}
                     </CardContent>
@@ -131,7 +135,7 @@ export default function UploadForm({ itemId }: UploadFormProps) {
             ))}
 
             <Button type="button" variant="outline" onClick={addBlock}>
-                Add another file
+                {t("add-another")}
             </Button>
 
             {state?.error ?
@@ -141,7 +145,7 @@ export default function UploadForm({ itemId }: UploadFormProps) {
             :   null}
 
             <Button type="submit" disabled={isPending}>
-                {isPending ? "Uploading…" : "Upload"}
+                {isPending ? t("uploading") : t("upload")}
             </Button>
         </form>
     );

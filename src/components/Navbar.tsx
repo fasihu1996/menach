@@ -5,8 +5,12 @@ import ThemeToggle from "./ThemeToggle";
 import { Button } from "./ui/button";
 import Search from "./Search";
 import Link from "next/link";
+import LanguageSelector from "./LanguageSelector";
+import { ButtonGroup } from "./ui/button-group";
+import { useTranslations } from "next-intl";
 
 export default function Navbar() {
+    const t = useTranslations("Navbar");
     return (
         <nav className="bg-background/95 sticky top-0 z-50 w-full border-b backdrop-blur">
             <div className="mx-auto flex h-12 max-w-5xl items-center gap-2 px-2 sm:h-16 sm:px-4">
@@ -23,14 +27,19 @@ export default function Navbar() {
                     <Button
                         variant="ghost"
                         nativeButton={false}
-                        render={<Link href="/">Items</Link>}
+                        render={<Link href="/">{t("items")}</Link>}
                     />
                     <Button
                         variant="ghost"
                         nativeButton={false}
-                        render={<Link href="/collections">Collections</Link>}
+                        render={
+                            <Link href="/collections">{t("collections")}</Link>
+                        }
                     />
-                    <ThemeToggle />
+                    <ButtonGroup>
+                        <LanguageSelector />
+                        <ThemeToggle />
+                    </ButtonGroup>
                 </div>
             </div>
         </nav>

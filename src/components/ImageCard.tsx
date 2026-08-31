@@ -1,4 +1,5 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 interface ImageCardProps {
@@ -7,6 +8,7 @@ interface ImageCardProps {
 }
 
 export default function ImageCard({ title, imageURL }: ImageCardProps) {
+    const t = useTranslations("Components");
     return (
         <Card className="h-full">
             <CardHeader>
@@ -23,7 +25,7 @@ export default function ImageCard({ title, imageURL }: ImageCardProps) {
                             />
                         </div>
                     :   <div className="flex aspect-square w-full items-center justify-center rounded-md border border-dashed text-sm text-muted-foreground">
-                            No image available
+                            {t("no-image")}
                         </div>
                     }
                 </div>

@@ -10,12 +10,14 @@ import {
     getTransferEvents,
 } from "@/utils/archive/transfer";
 import type { Item, Collection, Asset, Media } from "@/lib/types";
+import { getTranslations } from "next-intl/server";
 
 export default async function ItemDetailPage({
     params,
 }: {
     params: Promise<{ id: string }>;
 }) {
+    const t = await getTranslations("Detailpage");
     const { id } = await params;
     const itemId = Number(id);
 
@@ -85,7 +87,11 @@ export default async function ItemDetailPage({
                 <div className="flex items-center gap-2">
                     <Button
                         nativeButton={false}
-                        render={<Link href={`/${item.id}/upload`}>Upload</Link>}
+                        render={
+                            <Link href={`/${item.id}/upload`}>
+                                {t("upload")}
+                            </Link>
+                        }
                     />
                 </div>
             </div>

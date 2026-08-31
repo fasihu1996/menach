@@ -47,6 +47,7 @@ export default async function RootLayout({
         <>
             <html
                 lang={lang}
+                dir={lang === "ar" ? "rtl" : "ltr"}
                 suppressHydrationWarning
                 className={cn(
                     "h-full",
