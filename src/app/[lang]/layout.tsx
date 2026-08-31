@@ -4,6 +4,9 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "next-themes";
+import { NextIntlClientProvider } from "next-intl";
+import { getTranslations, getLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
 const ralewayHeading = Raleway({
     subsets: ["latin"],
@@ -22,20 +25,28 @@ const geistMono = Geist_Mono({
     subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-    title: "MENACH",
-    description: "Digital Cultural Heritage in Middle East and North Africa",
-};
+export function generateStaticParams() {
+    return routing.locales.map((lang) => ({ lang }));
+}
 
-export default function RootLayout({
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations("Metadata");
+
+    return {
+        title: t("title"),
+        description: t("description"),
+    };
+}
+
+export default async function RootLayout({
     children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+}: LayoutProps<"/[lang]">) {
+    const lang = await getLocale();
+
     return (
         <>
             <html
-                lang="en"
+                lang={lang}
                 suppressHydrationWarning
                 className={cn(
                     "h-full",
@@ -53,10 +64,12 @@ export default function RootLayout({
                         defaultTheme="system"
                         enableSystem
                     >
-                        <Navbar />
-                        <main className="mx-auto w-full max-w-5xl flex-1">
-                            {children}
-                        </main>
+                        <NextIntlClientProvider>
+                            <Navbar />
+                            <main className="mx-auto w-full max-w-5xl flex-1">
+                                {children}
+                            </main>
+                        </NextIntlClientProvider>
                     </ThemeProvider>
                 </body>
             </html>
