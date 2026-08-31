@@ -1,8 +1,7 @@
-import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
-const nextConfig: NextConfig = {
-    /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     experimental: {
         serverActions: {
             bodySizeLimit: "100mb",
