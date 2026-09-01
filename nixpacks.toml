@@ -1,0 +1,13 @@
+[phases.setup]
+nixPkgs = ["bun"]
+
+[phases.install]
+cmds = ["bun i --no-save"]
+cacheDirectories = ["/root/.bun"]
+paths = ["/app/node_modules/.bin"]
+
+[phases.build]
+cmds = []
+
+[start]
+cmd = "bun run worker"
