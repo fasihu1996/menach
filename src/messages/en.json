@@ -26,7 +26,8 @@
         "archival-transfer": "Archival transfer"
     },
     "Detailpage": {
-        "upload": "Upload"
+        "upload": "Upload",
+        "location": "Location:"
     },
     "UploadPage": {
         "upload-media": "Upload media to"
@@ -60,6 +61,8 @@
     "ItemForm": {
         "title": "Title",
         "desc": "Description",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
         "date": "Date",
         "collection": "Collection",
         "creating": "Creating...",

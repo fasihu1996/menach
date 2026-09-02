@@ -48,6 +48,60 @@ export default function NewItemForm({ collections }: NewItemFormProps) {
             </div>
 
             <div className="flex flex-col gap-1.5">
+                <Label htmlFor="latitude">{t("latitude")}</Label>
+                <Input
+                    id="latitude"
+                    name="latitude"
+                    type="number"
+                    min={-90}
+                    max={90}
+                    step="any"
+                    placeholder="-90 to 90"
+                    onBlur={(event) => {
+                        const input = event.currentTarget;
+                        if (input.value === "") return;
+
+                        const value = Number(input.value);
+                        const min = Number(input.min);
+                        const max = Number(input.max);
+
+                        if (Number.isFinite(value)) {
+                            input.value = String(
+                                Math.min(max, Math.max(min, value)),
+                            );
+                        }
+                    }}
+                />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+                <Label htmlFor="longitude">{t("longitude")}</Label>
+                <Input
+                    id="longitude"
+                    name="longitude"
+                    type="number"
+                    min={-180}
+                    max={180}
+                    step="any"
+                    placeholder="-180 to 180"
+                    onBlur={(event) => {
+                        const input = event.currentTarget;
+                        if (input.value === "") return;
+
+                        const value = Number(input.value);
+                        const min = Number(input.min);
+                        const max = Number(input.max);
+
+                        if (Number.isFinite(value)) {
+                            input.value = String(
+                                Math.min(max, Math.max(min, value)),
+                            );
+                        }
+                    }}
+                />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
                 <Label htmlFor="collection">{t("collection")}</Label>
                 <Select name="collection" items={collectionItems}>
                     <SelectTrigger id="collection" className="w-full">

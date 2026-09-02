@@ -23,11 +23,29 @@ export async function createItem(
     const collectionRaw = formData.get("collection") as string;
     const collection = collectionRaw ? Number(collectionRaw) : null;
 
+    const latitudeRaw = (formData.get("latitude") as string)?.trim();
+    const longitudeRaw = (formData.get("longitude") as string)?.trim();
+
+    let location: string | null = null;
+    if (latitudeRaw || longitudeRaw) {
+        const latitude = Number(latitudeRaw);
+        const longitude = Number(longitudeRaw);
+
+        if (!latitudeRaw || !longitudeRaw) {
+            return {
+                error: "Provide both latitude and longitude, or neither.",
+            };
+        }
+
+        location = `SRID=4326;POINT(${longitude} ${latitude})`;
+    }
+
     const item = await insertRow<Item>("items", {
         title,
         description,
         date,
         collection,
+        location,
     });
 
     revalidatePath("/");

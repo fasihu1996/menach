@@ -26,7 +26,8 @@
         "archival-transfer": "Transfert d'archives"
     },
     "Detailpage": {
-        "upload": "Télécharger"
+        "upload": "Télécharger",
+        "location": "Emplacement :"
     },
     "UploadPage": {
         "upload-media": "Téléverser des fichiers multimédias vers"
@@ -60,6 +61,8 @@
     "ItemForm": {
         "title": "Titre",
         "desc": "Description",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
         "date": "Date",
         "collection": "Collection",
         "creating": "Créant...",

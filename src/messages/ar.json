@@ -26,7 +26,8 @@
         "archival-transfer": "نقل المواد الأرشيفية"
     },
     "Detailpage": {
-        "upload": "رفع"
+        "upload": "رفع",
+        "location": "الموقع:"
     },
     "UploadPage": {
         "upload-media": "تحميل الوسائط إلى"
@@ -60,6 +61,8 @@
     "ItemForm": {
         "title": "العنوان",
         "desc": "وصف",
+        "latitude": "خط العرض",
+        "longitude": "خط الطول",
         "date": "التاريخ",
         "collections": "مجموعة",
         "creating": "إنشاء",

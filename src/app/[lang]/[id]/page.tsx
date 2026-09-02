@@ -27,6 +27,12 @@ export default async function ItemDetailPage({
         itemId,
     );
 
+    const location = await getById<Item>(
+        "items_with_coords",
+        "id,latitude,longitude",
+        itemId,
+    );
+
     if (!item) {
         notFound();
     }

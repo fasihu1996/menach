@@ -13,6 +13,7 @@ export type Item = {
     created_at: string;
     collection: number | null;
     external_id: string;
+    location: string | null;
 };
 
 export type Collection = {

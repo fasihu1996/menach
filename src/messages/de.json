@@ -26,7 +26,8 @@
         "archival-transfer": "Archivtransfer"
     },
     "Detailpage": {
-        "upload": "Hochladen"
+        "upload": "Hochladen",
+        "location": "Standort:"
     },
     "UploadPage": {
         "upload-media": "Medien hochladen zu"
@@ -60,6 +61,8 @@
     "ItemForm": {
         "title": "Titel",
         "desc": "Beschreibung",
+        "latitude": "Breitengrad",
+        "longitude": "Längengrad",
         "date": "Datum",
         "collection": "Sammlung",
         "creating": "Wird erstellt...",
