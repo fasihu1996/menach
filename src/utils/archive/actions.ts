@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { getLocale } from "next-intl/server";
 import { createQueuedTransfer, getActiveTransferForItem } from "./transfer";
 
 export type StartArchivalTransferState = { error?: string } | null;
@@ -17,6 +18,7 @@ export async function startArchivalTransfer(
 
     await createQueuedTransfer(itemId);
 
-    revalidatePath(`/${itemId}`);
+    const locale = await getLocale();
+    revalidatePath(`/${locale}/${itemId}`);
     return null;
 }
