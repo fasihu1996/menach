@@ -64,6 +64,9 @@
         "latitude": "Latitude",
         "longitude": "Longitude",
         "date": "Date",
+        "use-free-text": "Use free text",
+        "use-date-picker": "Use date picker",
+        "date-free-text-placeholder": "e.g. 4000 BCE, circa 1200",
         "collection": "Collection",
         "creating": "Creating...",
         "create": "Create collection"

@@ -64,6 +64,9 @@
         "latitude": "Breitengrad",
         "longitude": "Längengrad",
         "date": "Datum",
+        "use-free-text": "Freitext verwenden",
+        "use-date-picker": "Datumsauswahl verwenden",
+        "date-free-text-placeholder": "z. B. 4000 v. Chr., um 1200",
         "collection": "Sammlung",
         "creating": "Wird erstellt...",
         "create": "Neue Sammlung erstellen"

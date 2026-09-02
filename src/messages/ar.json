@@ -64,6 +64,9 @@
         "latitude": "خط العرض",
         "longitude": "خط الطول",
         "date": "التاريخ",
+        "use-free-text": "استخدام نص حر",
+        "use-date-picker": "استخدام منتقي التاريخ",
+        "date-free-text-placeholder": "مثال: ٤٠٠٠ ق.م.، حوالي ١٢٠٠",
         "collections": "مجموعة",
         "creating": "إنشاء",
         "create": "إنشاء عنصر"
