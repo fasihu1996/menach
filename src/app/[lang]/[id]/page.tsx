@@ -21,10 +21,8 @@ export default async function ItemDetailPage({
     const { id } = await params;
     const itemId = Number(id);
 
-    const item = await getById<
-        Item & { latitude: number | null; longitude: number | null }
-    >(
-        "items_with_coords",
+    const item = await getById<Item>(
+        "items",
         "id,title,description,date,created_at,collection,latitude,longitude",
         itemId,
     );

@@ -14,6 +14,8 @@ export type Item = {
     collection: number | null;
     external_id: string;
     location: string | null;
+    latitude: number | null;
+    longitude: number | null;
 };
 
 export type Collection = {
