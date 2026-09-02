@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import MediaViewer from "@/components/MediaViewer";
 import ArchiveSection from "@/components/ArchiveSection";
 import { getEntries, getById } from "@/utils/supabase";
@@ -11,6 +12,8 @@ import {
 } from "@/utils/archive/transfer";
 import type { Item, Collection, Asset, Media } from "@/lib/types";
 import { getTranslations } from "next-intl/server";
+import ItemMap from "@/components/ItemMap";
+import { Suspense } from "react";
 
 export default async function ItemDetailPage({
     params,
@@ -70,22 +73,29 @@ export default async function ItemDetailPage({
                     <h1 className="font-heading text-2xl font-bold">
                         {item.title}
                     </h1>
+                    <Separator />
                     {item.description ?
-                        <p className="mt-1 text-sm text-foreground">
-                            {item.description}
-                        </p>
+                        <>
+                            <p className="mt-1 text-sm text-foreground py-2">
+                                {item.description}
+                            </p>
+                            <Separator />
+                        </>
                     :   null}
                     <div className="mt-1 flex flex-col gap-2 text-xs text-foreground">
                         {item.date ?
-                            <span>{item.date}</span>
+                            <span>{t("date") + item.date}</span>
                         :   null}
                         {collection ?
-                            <span>{collection.title}</span>
+                            <span>{t("collection") + collection.title}</span>
                         :   null}
                         {item.latitude != null && item.longitude != null ?
                             <span>
-                                {t("location")} {item.latitude.toFixed(5)},{" "}
-                                {item.longitude.toFixed(5)}
+                                {t("location")}{" "}
+                                {Math.abs(item.latitude).toFixed(5)}°{" "}
+                                {item.latitude >= 0 ? "N" : "S"},{" "}
+                                {Math.abs(item.longitude).toFixed(5)}°{" "}
+                                {item.longitude >= 0 ? "E" : "W"}
                             </span>
                         :   null}
                     </div>
@@ -120,6 +130,15 @@ export default async function ItemDetailPage({
                         :   null,
                 }))}
             />
+            {item.latitude != null && item.longitude != null ?
+                <Suspense>
+                    <ItemMap
+                        title={item.title}
+                        latitude={item.latitude}
+                        longitude={item.longitude}
+                    />
+                </Suspense>
+            :   null}
         </div>
     );
 }
