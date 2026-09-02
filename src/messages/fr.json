@@ -27,7 +27,9 @@
     },
     "Detailpage": {
         "upload": "Télécharger",
-        "location": "Emplacement :"
+        "location": "Emplacement :",
+        "date": "Date: ",
+        "collection": "Collection: "
     },
     "UploadPage": {
         "upload-media": "Téléverser des fichiers multimédias vers"

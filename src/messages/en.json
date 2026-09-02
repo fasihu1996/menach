@@ -27,7 +27,9 @@
     },
     "Detailpage": {
         "upload": "Upload",
-        "location": "Location:"
+        "location": "Location:",
+        "date": "Date: ",
+        "collection": "Collection: "
     },
     "UploadPage": {
         "upload-media": "Upload media to"

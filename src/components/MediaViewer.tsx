@@ -86,11 +86,9 @@ export default function MediaViewer({ media }: MediaViewerProps) {
 
             <div>
                 <p className="font-medium">{selected.title}</p>
-                {selected.description ?
-                    <p className="text-sm text-muted-foreground">
-                        {selected.description}
-                    </p>
-                :   null}
+                <p className="min-h-5 text-sm text-muted-foreground">
+                    {selected.description}
+                </p>
             </div>
 
             {media.length > 1 ?

@@ -27,7 +27,9 @@
     },
     "Detailpage": {
         "upload": "Hochladen",
-        "location": "Standort:"
+        "location": "Standort:",
+        "date": "Datum: ",
+        "collection": "Sammlung: "
     },
     "UploadPage": {
         "upload-media": "Medien hochladen zu"

@@ -27,7 +27,9 @@
     },
     "Detailpage": {
         "upload": "رفع",
-        "location": "الموقع:"
+        "location": "الموقع:",
+        "date": "التاريخ: ",
+        "collection": "مجموعة:"
     },
     "UploadPage": {
         "upload-media": "تحميل الوسائط إلى"
