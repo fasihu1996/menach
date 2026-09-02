@@ -112,7 +112,7 @@ export default async function SearchPage({
                         </Link>
                     ))}
                     {resolvedItems.length === 0 ?
-                        <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
+                        <div className="rounded-lg border border-dashed p-6 text-sm text-foreground">
                             {t("no-items-found")}
                         </div>
                     :   null}
@@ -149,7 +149,7 @@ export default async function SearchPage({
                         ),
                     )}
                     {resolvedCollections.length === 0 ?
-                        <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
+                        <div className="rounded-lg border border-dashed p-6 text-sm text-foreground">
                             {t("no-coll-found")}
                         </div>
                     :   null}

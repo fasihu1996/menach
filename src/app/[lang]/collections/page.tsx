@@ -55,7 +55,7 @@ export default async function CollectionsPage() {
                     ),
                 )}
                 {resolvedEntries.length === 0 ?
-                    <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
+                    <div className="rounded-lg border border-dashed p-6 text-sm text-foreground">
                         {t("no-found")}
                     </div>
                 :   null}

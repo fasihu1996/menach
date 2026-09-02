@@ -21,15 +21,11 @@ export default async function ItemDetailPage({
     const { id } = await params;
     const itemId = Number(id);
 
-    const item = await getById<Item>(
-        "items",
-        "id,title,description,date,created_at,collection",
-        itemId,
-    );
-
-    const location = await getById<Item>(
+    const item = await getById<
+        Item & { latitude: number | null; longitude: number | null }
+    >(
         "items_with_coords",
-        "id,latitude,longitude",
+        "id,title,description,date,created_at,collection,latitude,longitude",
         itemId,
     );
 
@@ -77,16 +73,22 @@ export default async function ItemDetailPage({
                         {item.title}
                     </h1>
                     {item.description ?
-                        <p className="mt-1 text-sm text-muted-foreground">
+                        <p className="mt-1 text-sm text-foreground">
                             {item.description}
                         </p>
                     :   null}
-                    <div className="mt-1 flex gap-3 text-xs text-muted-foreground">
+                    <div className="mt-1 flex flex-col gap-2 text-xs text-foreground">
                         {item.date ?
                             <span>{item.date}</span>
                         :   null}
                         {collection ?
                             <span>{collection.title}</span>
+                        :   null}
+                        {item.latitude != null && item.longitude != null ?
+                            <span>
+                                {t("location")} {item.latitude.toFixed(5)},{" "}
+                                {item.longitude.toFixed(5)}
+                            </span>
                         :   null}
                     </div>
                 </div>

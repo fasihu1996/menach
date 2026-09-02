@@ -50,7 +50,7 @@ export default async function DatabasePage() {
                     </Link>
                 ))}
                 {resolvedEntries.length === 0 ?
-                    <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
+                    <div className="rounded-lg border border-dashed p-6 text-sm text-foreground">
                         {t("no-items-found")}
                     </div>
                 :   null}
