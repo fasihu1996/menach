@@ -22,8 +22,7 @@
         "archive": "In Archivematica archivieren",
         "last-archived": "Zuletzt archiviert am",
         "rearchive": "Erneut archivieren",
-        "retry": "Wiederholen",
-        "archival-transfer": "Archivtransfer"
+        "retry": "Wiederholen"
     },
     "Detailpage": {
         "upload": "Hochladen",

@@ -38,15 +38,6 @@ export type ArchivematicaTransfer = {
     updated_at: string;
 };
 
-export type ArchivematicaTransferEvent = {
-    id: string;
-    transfer_id: string;
-    event_type: TransferEventType;
-    microservice: string | null;
-    message: string | null;
-    created_at: string;
-};
-
 export type PackageItem = {
     externalId: string;
     title: string;

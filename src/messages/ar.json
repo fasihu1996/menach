@@ -22,8 +22,7 @@
         "archive": "...أرشفة إلى",
         "last-archived": "آخر أرشفة في",
         "rearchive": "إعادة الأرشفة",
-        "retry": "إعادة محاولة الأرشفة",
-        "archival-transfer": "نقل المواد الأرشيفية"
+        "retry": "إعادة محاولة الأرشفة"
     },
     "Detailpage": {
         "upload": "رفع",

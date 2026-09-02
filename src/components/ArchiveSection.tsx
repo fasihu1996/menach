@@ -1,14 +1,13 @@
 "use client";
 
 import { useActionState, useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { startArchivalTransfer } from "@/utils/archive/actions";
 import {
     TERMINAL_TRANSFER_STATUSES,
     type ArchivematicaTransfer,
-    type ArchivematicaTransferEvent,
 } from "@/utils/archive/types";
+import { cn } from "@/lib/utils";
 import { useFormatter, useTranslations } from "next-intl";
 
 interface ArchiveSectionProps {
@@ -16,7 +15,6 @@ interface ArchiveSectionProps {
     hasMedia: boolean;
     outdatedArchive: boolean;
     initialTransfer: ArchivematicaTransfer | null;
-    initialEvents: ArchivematicaTransferEvent[];
 }
 
 export default function ArchiveSection({
@@ -24,7 +22,6 @@ export default function ArchiveSection({
     hasMedia,
     outdatedArchive,
     initialTransfer,
-    initialEvents,
 }: ArchiveSectionProps) {
     const t = useTranslations("ArchiveSection");
     const format = useFormatter();
@@ -32,7 +29,6 @@ export default function ArchiveSection({
     const [state, formAction, isPending] = useActionState(action, null);
 
     const [transfer, setTransfer] = useState(initialTransfer);
-    const [events, setEvents] = useState(initialEvents);
 
     useEffect(() => {
         if (!transfer || TERMINAL_TRANSFER_STATUSES.includes(transfer.status)) {
@@ -47,7 +43,6 @@ export default function ArchiveSection({
             }
             const data = await res.json();
             setTransfer(data.transfer);
-            setEvents(data.events);
         }, 1000);
 
         return () => clearInterval(interval);
@@ -69,8 +64,13 @@ export default function ArchiveSection({
         );
     } else if (transfer.status === "complete") {
         content = (
-            <div className="flex flex-col gap-2">
-                <p className="text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+                <p
+                    className={cn(
+                        buttonVariants({ variant: "outline" }),
+                        "pointer-events-none text-muted-foreground",
+                    )}
+                >
                     {t("last-archived")}{" "}
                     {format.dateTime(new Date(transfer.updated_at), {
                         dateStyle: "medium",
@@ -82,7 +82,6 @@ export default function ArchiveSection({
                         <Button
                             type="submit"
                             variant="outline"
-                            size="sm"
                             disabled={!hasMedia || isPending}
                         >
                             {isPending ? t("starting") : t("rearchive")}
@@ -96,54 +95,31 @@ export default function ArchiveSection({
             transfer.status === "failed" || transfer.status === "rejected";
 
         content = (
-            <Card>
-                <CardContent className="flex flex-col gap-2">
-                    <div className="flex items-center justify-between gap-4">
-                        <span className="text-sm font-medium">
-                            {t("archival-transfer")}
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                            {transfer.status}
-                            {transfer.current_microservice ?
-                                ` — ${transfer.current_microservice}`
-                            :   ""}
-                        </span>
-                    </div>
-                    {transfer.error_message ?
-                        <p className="text-sm text-destructive">
-                            {transfer.error_message}
-                        </p>
-                    :   null}
-                    {events.length > 0 ?
-                        <ul className="flex flex-col gap-1 text-xs text-muted-foreground">
-                            {events.slice(-5).map((event) => (
-                                <li key={event.id}>
-                                    {format.dateTime(
-                                        new Date(event.created_at),
-                                        { timeStyle: "short" },
-                                    )}{" "}
-                                    — {event.event_type}
-                                    {event.microservice ?
-                                        ` (${event.microservice})`
-                                    :   ""}
-                                </li>
-                            ))}
-                        </ul>
-                    :   null}
-                    {canRetry ?
-                        <form action={formAction}>
-                            <Button
-                                type="submit"
-                                variant="outline"
-                                size="sm"
-                                disabled={!hasMedia || isPending}
-                            >
-                                {isPending ? t("starting") : t("retry")}
-                            </Button>
-                        </form>
-                    :   null}
-                </CardContent>
-            </Card>
+            <div className="flex items-center gap-2">
+                <span
+                    className={cn(
+                        buttonVariants({ variant: "outline" }),
+                        "pointer-events-none max-w-96 truncate text-muted-foreground",
+                    )}
+                >
+                    {transfer.error_message ??
+                        (transfer.current_microservice ?
+                            `${transfer.status} — ${transfer.current_microservice}`
+                        :   transfer.status)}
+                </span>
+                {canRetry ?
+                    <form action={formAction}>
+                        <Button
+                            type="submit"
+                            variant="outline"
+                            size="sm"
+                            disabled={!hasMedia || isPending}
+                        >
+                            {isPending ? t("starting") : t("retry")}
+                        </Button>
+                    </form>
+                :   null}
+            </div>
         );
     }
 

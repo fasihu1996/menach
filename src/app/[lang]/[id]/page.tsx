@@ -6,10 +6,7 @@ import MediaViewer from "@/components/MediaViewer";
 import ArchiveSection from "@/components/ArchiveSection";
 import { getEntries, getById } from "@/utils/supabase";
 import { getObjectURL } from "@/utils/s3";
-import {
-    getCurrentTransferForItem,
-    getTransferEvents,
-} from "@/utils/archive/transfer";
+import { getCurrentTransferForItem } from "@/utils/archive/transfer";
 import type { Item, Collection, Asset, Media } from "@/lib/types";
 import { getTranslations } from "next-intl/server";
 import ItemMap from "@/components/ItemMap";
@@ -56,8 +53,6 @@ export default async function ItemDetailPage({
         )) as Media[] | null) ?? [];
 
     const activeTransfer = await getCurrentTransferForItem(item.id);
-    const transferEvents =
-        activeTransfer ? await getTransferEvents(activeTransfer.id) : [];
     const outdatedArchive =
         activeTransfer?.status === "complete" &&
         assets.some(
@@ -68,39 +63,18 @@ export default async function ItemDetailPage({
 
     return (
         <div className="flex flex-col gap-6 p-4">
-            <div className="flex items-start justify-between gap-4">
-                <div>
-                    <h1 className="font-heading text-2xl font-bold">
-                        {item.title}
-                    </h1>
-                    <Separator />
-                    {item.description ?
-                        <>
-                            <p className="mt-1 text-sm text-foreground py-2">
-                                {item.description}
-                            </p>
-                            <Separator />
-                        </>
-                    :   null}
-                    <div className="mt-1 flex flex-col gap-2 text-xs text-foreground">
-                        {item.date ?
-                            <span>{t("date") + item.date}</span>
-                        :   null}
-                        {collection ?
-                            <span>{t("collection") + collection.title}</span>
-                        :   null}
-                        {item.latitude != null && item.longitude != null ?
-                            <span>
-                                {t("location")}{" "}
-                                {Math.abs(item.latitude).toFixed(5)}°{" "}
-                                {item.latitude >= 0 ? "N" : "S"},{" "}
-                                {Math.abs(item.longitude).toFixed(5)}°{" "}
-                                {item.longitude >= 0 ? "E" : "W"}
-                            </span>
-                        :   null}
-                    </div>
-                </div>
-                <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+                <h1 className="font-heading text-2xl font-bold">
+                    {item.title}
+                </h1>
+                <div className="flex shrink-0 items-center gap-2">
+                    <ArchiveSection
+                        key={activeTransfer?.id ?? "none"}
+                        itemId={item.id}
+                        hasMedia={attachedMedia.length > 0}
+                        outdatedArchive={outdatedArchive}
+                        initialTransfer={activeTransfer}
+                    />
                     <Button
                         nativeButton={false}
                         render={
@@ -111,15 +85,31 @@ export default async function ItemDetailPage({
                     />
                 </div>
             </div>
-
-            <ArchiveSection
-                key={activeTransfer?.id ?? "none"}
-                itemId={item.id}
-                hasMedia={attachedMedia.length > 0}
-                outdatedArchive={outdatedArchive}
-                initialTransfer={activeTransfer}
-                initialEvents={transferEvents}
-            />
+            <Separator />
+            {item.description ?
+                <>
+                    <p className="text-sm text-foreground">
+                        {item.description}
+                    </p>
+                    <Separator />
+                </>
+            :   null}
+            <div className="flex flex-col gap-2 text-xs text-foreground">
+                {item.date ?
+                    <span>{t("date") + item.date}</span>
+                :   null}
+                {collection ?
+                    <span>{t("collection") + collection.title}</span>
+                :   null}
+                {item.latitude != null && item.longitude != null ?
+                    <span>
+                        {t("location")} {Math.abs(item.latitude).toFixed(5)}°{" "}
+                        {item.latitude >= 0 ? "N" : "S"},{" "}
+                        {Math.abs(item.longitude).toFixed(5)}°{" "}
+                        {item.longitude >= 0 ? "E" : "W"}
+                    </span>
+                :   null}
+            </div>
 
             <MediaViewer
                 media={attachedMedia.map((entry) => ({

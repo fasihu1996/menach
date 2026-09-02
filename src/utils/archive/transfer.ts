@@ -3,7 +3,6 @@ import { createServiceClient } from "@/lib/service";
 import {
     TERMINAL_TRANSFER_STATUSES,
     type ArchivematicaTransfer,
-    type ArchivematicaTransferEvent,
     type TransferEventType,
     type TransferStatus,
 } from "./types";
@@ -130,16 +129,4 @@ export async function insertTransferEvent(
         microservice: payload?.microservice ?? null,
         message: payload?.message ?? null,
     });
-}
-
-export async function getTransferEvents(
-    transferId: string,
-): Promise<ArchivematicaTransferEvent[]> {
-    const supabase = createServiceClient();
-    const { data } = await supabase
-        .from("archivematica_transfer_events")
-        .select("*")
-        .eq("transfer_id", transferId)
-        .order("created_at", { ascending: true });
-    return (data ?? []) as ArchivematicaTransferEvent[];
 }

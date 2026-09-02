@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
-import {
-    getCurrentTransferForItem,
-    getTransferEvents,
-} from "@/utils/archive/transfer";
+import { getCurrentTransferForItem } from "@/utils/archive/transfer";
 
 export async function GET(
     _request: Request,
@@ -12,11 +9,5 @@ export async function GET(
     const itemId = Number(id);
 
     const transfer = await getCurrentTransferForItem(itemId);
-
-    if (!transfer) {
-        return NextResponse.json({ transfer: null, events: [] });
-    }
-
-    const events = await getTransferEvents(transfer.id);
-    return NextResponse.json({ transfer, events });
+    return NextResponse.json({ transfer });
 }

@@ -22,8 +22,7 @@
         "archive": "Archiver vers Archivematica",
         "last-archived": "Dernière archivage le",
         "rearchive": "Réarchiver",
-        "retry": "Réessayer l'archive",
-        "archival-transfer": "Transfert d'archives"
+        "retry": "Réessayer l'archive"
     },
     "Detailpage": {
         "upload": "Télécharger",
