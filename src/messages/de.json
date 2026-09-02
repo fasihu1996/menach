@@ -1,0 +1,83 @@
+{
+    "Metadata": {
+        "title": "MENACH",
+        "description": "Digitales kulturelles Erbe im Nahen Osten und Nordafrika"
+    },
+    "LangSelector": {
+        "ar": "Arabisch",
+        "fr": "Französisch",
+        "en": "Englisch",
+        "de": "Deutsch"
+    },
+    "DatabasePage": {
+        "new-item": "Neues Objekt",
+        "no-items-found": "Keine Objekte gefunden."
+    },
+    "Navbar": {
+        "items": "Objekte",
+        "collections": "Sammlungen"
+    },
+    "ArchiveSection": {
+        "starting": "Startet...",
+        "archive": "In Archivematica archivieren",
+        "last-archived": "Zuletzt archiviert am",
+        "rearchive": "Erneut archivieren",
+        "retry": "Wiederholen",
+        "archival-transfer": "Archivtransfer"
+    },
+    "Detailpage": {
+        "upload": "Hochladen"
+    },
+    "UploadPage": {
+        "upload-media": "Medien hochladen zu"
+    },
+    "UploadForm": {
+        "file": "Datei",
+        "title": "Titel",
+        "desc": "Beschreibung",
+        "date": "Datum",
+        "media-type": "Medientyp",
+        "remove": "Entfernen",
+        "add-another": "Weitere Datei hinzufügen",
+        "upload": "Hochladen",
+        "uploading": "Wird hochgeladen..."
+    },
+    "Collections": {
+        "new-collection": "Neue Sammlung",
+        "no-found": "Keine Sammlungen gefunden"
+    },
+    "Collections-Detailpage": {
+        "no-found": "Noch keine Objekte in dieser Sammlung."
+    },
+    "CollectionsForm": {
+        "title": "Titel",
+        "institution": "Institution",
+        "city": "Stadt",
+        "country": "Land",
+        "creating": "Wird erstellt...",
+        "create": "Neue Sammlung erstellen"
+    },
+    "ItemForm": {
+        "title": "Titel",
+        "desc": "Beschreibung",
+        "date": "Datum",
+        "collection": "Sammlung",
+        "creating": "Wird erstellt...",
+        "create": "Neue Sammlung erstellen"
+    }, 
+    "Search": {
+        "results": "Suchergebnisse für ",
+        "all": "Alle Objekte und Sammlungen",
+        "items": "Objekte",
+        "no-items-found": "Keine passenden Objekte gefunden.",
+        "collections": "Sammlungen",
+        "no-coll-found": "Keine passenden Sammlungen gefunden."
+    },
+    "Components": {
+        "no-image": "Kein Bild verfügbar",
+        "no-media": "Noch keine Medien angehängt.",
+        "open-file": "Datei öffnen",
+        "input-search": "Suchbegriff eingeben...",
+        "toggle-theme": "Theme wechseln"
+    }
+}

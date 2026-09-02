@@ -9,7 +9,7 @@ import {
     type ArchivematicaTransfer,
     type ArchivematicaTransferEvent,
 } from "@/utils/archive/types";
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 
 interface ArchiveSectionProps {
     itemId: number;
@@ -27,6 +27,7 @@ export default function ArchiveSection({
     initialEvents,
 }: ArchiveSectionProps) {
     const t = useTranslations("ArchiveSection");
+    const format = useFormatter();
     const action = startArchivalTransfer.bind(null, itemId);
     const [state, formAction, isPending] = useActionState(action, null);
 
@@ -47,7 +48,7 @@ export default function ArchiveSection({
             const data = await res.json();
             setTransfer(data.transfer);
             setEvents(data.events);
-        }, 7000);
+        }, 1000);
 
         return () => clearInterval(interval);
     }, [itemId, transfer]);
@@ -71,7 +72,10 @@ export default function ArchiveSection({
             <div className="flex flex-col gap-2">
                 <p className="text-sm text-muted-foreground">
                     {t("last-archived")}{" "}
-                    {new Date(transfer.updated_at).toLocaleString()}
+                    {format.dateTime(new Date(transfer.updated_at), {
+                        dateStyle: "medium",
+                        timeStyle: "short",
+                    })}
                 </p>
                 {outdatedArchive ?
                     <form action={formAction}>
@@ -114,9 +118,10 @@ export default function ArchiveSection({
                         <ul className="flex flex-col gap-1 text-xs text-muted-foreground">
                             {events.slice(-5).map((event) => (
                                 <li key={event.id}>
-                                    {new Date(
-                                        event.created_at,
-                                    ).toLocaleTimeString()}{" "}
+                                    {format.dateTime(
+                                        new Date(event.created_at),
+                                        { timeStyle: "short" },
+                                    )}{" "}
                                     — {event.event_type}
                                     {event.microservice ?
                                         ` (${event.microservice})`

@@ -6,7 +6,8 @@
     "LangSelector": {
         "ar": "Arabe",
         "fr": "Français",
-        "en": "Anglais"
+        "en": "Anglais",
+        "de": "Allemand"
     },
     "DatabasePage": {
         "new-item": "Nouvel article",

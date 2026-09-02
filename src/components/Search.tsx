@@ -53,7 +53,7 @@ export default function Search({ className }: SearchProps) {
                     variant="default"
                     aria-label="Search"
                     size="icon"
-                    className="absolute end-0"
+                    className="absolute inset-e-0"
                 >
                     <SearchIcon className="h-4 w-4" />
                 </Button>
