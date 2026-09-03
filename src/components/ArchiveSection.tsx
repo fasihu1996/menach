@@ -1,17 +1,21 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
+import { ArchiveIcon, RotateCcwIcon } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { startArchivalTransfer } from "@/utils/archive/actions";
 import {
     TERMINAL_TRANSFER_STATUSES,
     type ArchivematicaTransfer,
 } from "@/utils/archive/types";
+import { trackArchiveTransfer } from "@/utils/archive/toastTracker";
 import { cn } from "@/lib/utils";
 import { useFormatter, useTranslations } from "next-intl";
 
 interface ArchiveSectionProps {
     itemId: number;
+    itemTitle: string;
     hasMedia: boolean;
     outdatedArchive: boolean;
     initialTransfer: ArchivematicaTransfer | null;
@@ -19,6 +23,7 @@ interface ArchiveSectionProps {
 
 export default function ArchiveSection({
     itemId,
+    itemTitle,
     hasMedia,
     outdatedArchive,
     initialTransfer,
@@ -35,6 +40,11 @@ export default function ArchiveSection({
             return;
         }
 
+        trackArchiveTransfer(itemId, {
+            completeMessage: t("toast-complete", { title: itemTitle }),
+            failedMessage: t("toast-failed", { title: itemTitle }),
+        });
+
         const interval = setInterval(async () => {
             const res = await fetch(`/api/archivematica/transfers/${itemId}`);
             if (!res.ok) {
@@ -46,7 +56,15 @@ export default function ArchiveSection({
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [itemId, transfer]);
+    }, [itemId, itemTitle, t, transfer]);
+
+    const wasPending = useRef(false);
+    useEffect(() => {
+        if (wasPending.current && !isPending && !state?.error) {
+            toast.success(t("toast-started", { title: itemTitle }));
+        }
+        wasPending.current = isPending;
+    }, [isPending, state, itemTitle, t]);
 
     let content;
 
@@ -58,13 +76,16 @@ export default function ArchiveSection({
                     variant="outline"
                     disabled={!hasMedia || isPending}
                 >
-                    {isPending ? t("starting") : t("archive")}
+                    <ArchiveIcon data-icon="inline-start" />
+                    <span className="sr-only sm:not-sr-only">
+                        {isPending ? t("starting") : t("archive")}
+                    </span>
                 </Button>
             </form>
         );
     } else if (transfer.status === "complete") {
         content = (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 sr-only sm:not-sr-only">
                 <p
                     className={cn(
                         buttonVariants({ variant: "outline" }),
@@ -99,7 +120,7 @@ export default function ArchiveSection({
                 <span
                     className={cn(
                         buttonVariants({ variant: "outline" }),
-                        "pointer-events-none max-w-96 truncate text-muted-foreground",
+                        "pointer-events-none max-w-120 truncate text-muted-foreground",
                     )}
                 >
                     {transfer.error_message ??
@@ -115,7 +136,10 @@ export default function ArchiveSection({
                             size="sm"
                             disabled={!hasMedia || isPending}
                         >
-                            {isPending ? t("starting") : t("retry")}
+                            <RotateCcwIcon data-icon="inline-start" />
+                            <span className="sr-only sm:not-sr-only">
+                                {isPending ? t("starting") : t("retry")}
+                            </span>
                         </Button>
                     </form>
                 :   null}

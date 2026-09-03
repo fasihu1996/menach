@@ -22,7 +22,10 @@
         "archive": "Archiver vers Archivematica",
         "last-archived": "Dernière archivage le",
         "rearchive": "Réarchiver",
-        "retry": "Réessayer l'archive"
+        "retry": "Réessayer l'archive",
+        "toast-started": "Archivage de « {title} » démarré",
+        "toast-complete": "Archivage de « {title} » terminé",
+        "toast-failed": "Échec de l'archivage de « {title} »"
     },
     "Detailpage": {
         "upload": "Télécharger",
@@ -67,7 +70,7 @@
         "date": "Date",
         "use-free-text": "Utiliser du texte libre",
         "use-date-picker": "Utiliser le sélecteur de date",
-        "date-free-text-placeholder": "ex. 4000 av. J.-C., vers 1200",
+        "date-free-text-placeholder": "ex. 4000 av. J.-C.; vers 1200; Annee 0",
         "collection": "Collection",
         "creating": "Créant...",
         "create": "Créer une élément"

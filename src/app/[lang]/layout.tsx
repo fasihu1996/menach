@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations, getLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { Toaster } from "@/components/ui/sonner";
 
 const ralewayHeading = Raleway({
     subsets: ["latin"],
@@ -38,9 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function RootLayout({
-    children,
-}: LayoutProps<"/[lang]">) {
+export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
     const lang = await getLocale();
 
     return (
@@ -67,9 +66,10 @@ export default async function RootLayout({
                     >
                         <NextIntlClientProvider>
                             <Navbar />
-                            <main className="mx-auto w-full max-w-5xl flex-1">
+                            <main className="mx-auto w-full max-w-7xl flex-1">
                                 {children}
                             </main>
+                            <Toaster />
                         </NextIntlClientProvider>
                     </ThemeProvider>
                 </body>

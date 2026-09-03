@@ -22,7 +22,10 @@
         "archive": "...أرشفة إلى",
         "last-archived": "آخر أرشفة في",
         "rearchive": "إعادة الأرشفة",
-        "retry": "إعادة محاولة الأرشفة"
+        "retry": "إعادة محاولة الأرشفة",
+        "toast-started": "بدأت أرشفة \"{title}\"",
+        "toast-complete": "اكتملت أرشفة \"{title}\"",
+        "toast-failed": "فشلت أرشفة \"{title}\""
     },
     "Detailpage": {
         "upload": "رفع",
@@ -67,7 +70,7 @@
         "date": "التاريخ",
         "use-free-text": "استخدام نص حر",
         "use-date-picker": "استخدام منتقي التاريخ",
-        "date-free-text-placeholder": "مثال: ٤٠٠٠ ق.م.، حوالي ١٢٠٠",
+        "date-free-text-placeholder": "مثال: ٤٠٠٠ ق.م.، حوالي ١٢٠٠،السنة 0",
         "collections": "مجموعة",
         "creating": "إنشاء",
         "create": "إنشاء عنصر"

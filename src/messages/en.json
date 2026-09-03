@@ -22,7 +22,10 @@
         "archive": "Archive to Archivematica",
         "last-archived": "Last archived on",
         "rearchive": "Re-archive",
-        "retry": "Retry archive"
+        "retry": "Retry archive",
+        "toast-started": "Archiving \"{title}\" started",
+        "toast-complete": "Archiving \"{title}\" finished",
+        "toast-failed": "Archiving \"{title}\" failed"
     },
     "Detailpage": {
         "upload": "Upload",
@@ -67,7 +70,7 @@
         "date": "Date",
         "use-free-text": "Use free text",
         "use-date-picker": "Use date picker",
-        "date-free-text-placeholder": "e.g. 4000 BCE, circa 1200",
+        "date-free-text-placeholder": "e.g. 4000 BC; circa 1200 AD; Year 0",
         "collection": "Collection",
         "creating": "Creating...",
         "create": "Create item"

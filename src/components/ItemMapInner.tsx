@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 import { divIcon } from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MapPin } from "lucide-react";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 const markerIcon = divIcon({
     html: renderToStaticMarkup(
@@ -27,6 +27,7 @@ interface ItemMapInnerProps {
 }
 
 export default function ItemMapInner({
+    title,
     latitude,
     longitude,
 }: ItemMapInnerProps) {
@@ -41,7 +42,9 @@ export default function ItemMapInner({
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[latitude, longitude]} icon={markerIcon} />
+            <Marker position={[latitude, longitude]} icon={markerIcon}>
+                <Popup>{title}</Popup>
+            </Marker>
         </MapContainer>
     );
 }

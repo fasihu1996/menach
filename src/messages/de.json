@@ -22,7 +22,10 @@
         "archive": "In Archivematica archivieren",
         "last-archived": "Zuletzt archiviert am",
         "rearchive": "Erneut archivieren",
-        "retry": "Wiederholen"
+        "retry": "Wiederholen",
+        "toast-started": "Archivierung von \"{title}\" gestartet",
+        "toast-complete": "Archivierung von \"{title}\" abgeschlossen",
+        "toast-failed": "Archivierung von \"{title}\" fehlgeschlagen"
     },
     "Detailpage": {
         "upload": "Hochladen",
@@ -67,7 +70,7 @@
         "date": "Datum",
         "use-free-text": "Freitext verwenden",
         "use-date-picker": "Datumsauswahl verwenden",
-        "date-free-text-placeholder": "z. B. 4000 v. Chr., um 1200",
+        "date-free-text-placeholder": "z. B. 4000 v. Chr.; um 1200; Jahr 0",
         "collection": "Sammlung",
         "creating": "Wird erstellt...",
         "create": "Neues Objekt erstellen"

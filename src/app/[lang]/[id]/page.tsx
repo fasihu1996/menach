@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { UploadIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import MediaViewer from "@/components/MediaViewer";
@@ -62,15 +63,16 @@ export default async function ItemDetailPage({
         );
 
     return (
-        <div className="flex flex-col gap-6 p-4">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-                <h1 className="font-heading text-2xl font-bold">
+        <div className="flex flex-col gap-3 p-4">
+            <div className="flex items-center justify-between gap-4">
+                <h1 className="font-heading min-w-0 flex-1 truncate text-2xl font-bold">
                     {item.title}
                 </h1>
                 <div className="flex shrink-0 items-center gap-2">
                     <ArchiveSection
                         key={activeTransfer?.id ?? "none"}
                         itemId={item.id}
+                        itemTitle={item.title}
                         hasMedia={attachedMedia.length > 0}
                         outdatedArchive={outdatedArchive}
                         initialTransfer={activeTransfer}
@@ -79,7 +81,10 @@ export default async function ItemDetailPage({
                         nativeButton={false}
                         render={
                             <Link href={`/${item.id}/upload`}>
-                                {t("upload")}
+                                <UploadIcon data-icon="inline-start" />
+                                <span className="sr-only sm:not-sr-only">
+                                    {t("upload")}
+                                </span>
                             </Link>
                         }
                     />
@@ -88,13 +93,13 @@ export default async function ItemDetailPage({
             <Separator />
             {item.description ?
                 <>
-                    <p className="text-sm text-foreground">
+                    <p className="text-sm text-foreground py-2">
                         {item.description}
                     </p>
                     <Separator />
                 </>
             :   null}
-            <div className="flex flex-col gap-2 text-xs text-foreground">
+            <div className="flex flex-col gap-2 text-sm text-foreground">
                 {item.date ?
                     <span>{t("date") + item.date}</span>
                 :   null}
@@ -110,7 +115,6 @@ export default async function ItemDetailPage({
                     </span>
                 :   null}
             </div>
-
             <MediaViewer
                 media={attachedMedia.map((entry) => ({
                     ...entry,
@@ -122,6 +126,7 @@ export default async function ItemDetailPage({
             />
             {item.latitude != null && item.longitude != null ?
                 <Suspense>
+                    <Separator />
                     <ItemMap
                         title={item.title}
                         latitude={item.latitude}
