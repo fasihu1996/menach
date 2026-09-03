@@ -37,7 +37,7 @@ export default function MediaViewer({ media }: MediaViewerProps) {
     return (
         <div className="flex flex-col gap-3">
             <Card className="p-0">
-                <div className="relative flex aspect-video w-full items-center justify-center bg-white">
+                <div className="relative flex aspect-video w-full items-center justify-center bg-background">
                     {selected.media_type === "StillImage" && selected.url ?
                         <Image
                             src={selected.url}
