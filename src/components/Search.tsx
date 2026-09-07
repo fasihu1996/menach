@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
 import { Input } from "./ui/input";
 import { SearchIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -30,13 +29,6 @@ export default function Search({ className }: SearchProps) {
                 className,
             )}
         >
-            <Link
-                href="/search"
-                aria-label="Search"
-                className="hidden size-7 shrink-0 items-center justify-center rounded-md hover:bg-muted min-[400px]:flex sm:hidden"
-            >
-                <SearchIcon className="h-4 w-4" />
-            </Link>
             <form
                 className="relative hidden w-full min-w-0 max-w-sm sm:flex"
                 onSubmit={handleSubmit}
