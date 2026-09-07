@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Sans, Raleway } from "next/font/google";
+import {
+    Geist,
+    Geist_Mono,
+    Noto_Sans,
+    Noto_Sans_Arabic,
+    Raleway,
+} from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
+import { DirectionProvider } from "@base-ui/react/direction-provider";
 import { ThemeProvider } from "next-themes";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations, getLocale } from "next-intl/server";
@@ -15,6 +22,11 @@ const ralewayHeading = Raleway({
 });
 
 const notoSans = Noto_Sans({ subsets: ["latin"], variable: "--font-sans" });
+
+const notoSansArabic = Noto_Sans_Arabic({
+    variable: "--font-sans-arabic",
+    subsets: ["arabic"],
+});
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -41,12 +53,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
     const lang = await getLocale();
+    const dir = lang === "ar" ? "rtl" : "ltr";
 
     return (
         <>
             <html
                 lang={lang}
-                dir={lang === "ar" ? "rtl" : "ltr"}
+                dir={dir}
                 suppressHydrationWarning
                 className={cn(
                     "h-full",
@@ -55,23 +68,26 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
                     geistMono.variable,
                     "font-sans",
                     notoSans.variable,
+                    notoSansArabic.variable,
                     ralewayHeading.variable,
                 )}
             >
                 <body className="min-h-full flex flex-col">
-                    <ThemeProvider
-                        attribute="class"
-                        defaultTheme="system"
-                        enableSystem
-                    >
-                        <NextIntlClientProvider>
-                            <Navbar />
-                            <main className="mx-auto w-full max-w-7xl flex-1">
-                                {children}
-                            </main>
-                            <Toaster />
-                        </NextIntlClientProvider>
-                    </ThemeProvider>
+                    <DirectionProvider direction={dir}>
+                        <ThemeProvider
+                            attribute="class"
+                            defaultTheme="system"
+                            enableSystem
+                        >
+                            <NextIntlClientProvider>
+                                <Navbar />
+                                <main className="mx-auto w-full max-w-7xl flex-1">
+                                    {children}
+                                </main>
+                                <Toaster />
+                            </NextIntlClientProvider>
+                        </ThemeProvider>
+                    </DirectionProvider>
                 </body>
             </html>
         </>
