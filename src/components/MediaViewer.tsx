@@ -115,7 +115,8 @@ export default function MediaViewer({ media }: MediaViewerProps) {
                                 )}
                             >
                                 {(
-                                    entry.media_type === "StillImage" &&
+                                    (entry.media_type === "StillImage" ||
+                                        entry.media_type === "Image") &&
                                     entry.url
                                 ) ?
                                     <Image
