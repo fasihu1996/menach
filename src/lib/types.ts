@@ -3,7 +3,8 @@ export type MediaType =
     | "MovingImage"
     | "Text"
     | "Sound"
-    | "Interactive";
+    | "Interactive"
+    | "Image";
 
 export type Item = {
     id: number;

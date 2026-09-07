@@ -23,6 +23,7 @@ const MEDIA_TYPES: MediaType[] = [
     "Text",
     "Sound",
     "Interactive",
+    "Image",
 ];
 
 interface UploadFormProps {
