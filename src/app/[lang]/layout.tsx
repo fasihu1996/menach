@@ -15,6 +15,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getTranslations, getLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Toaster } from "@/components/ui/sonner";
+import { verifyProducerSession } from "@/lib/dal";
 
 const ralewayHeading = Raleway({
     subsets: ["latin"],
@@ -54,6 +55,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
     const lang = await getLocale();
     const dir = lang === "ar" ? "rtl" : "ltr";
+    const isProducer = !!(await verifyProducerSession());
 
     return (
         <>
@@ -80,7 +82,7 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
                             enableSystem
                         >
                             <NextIntlClientProvider>
-                                <Navbar />
+                                <Navbar isProducer={isProducer} />
                                 <main className="mx-auto w-full max-w-7xl flex-1">
                                     {children}
                                 </main>

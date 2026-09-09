@@ -15,7 +15,17 @@
     },
     "Navbar": {
         "items": "Items",
-        "collections": "Collections"
+        "collections": "Collections",
+        "login": "Log in",
+        "logout": "Log out"
+    },
+    "Login": {
+        "login": "Log in",
+        "email": "Email",
+        "password": "Password",
+        "submit": "Log in",
+        "signing-in": "Logging in...",
+        "sign-in-required": "You must be signed in to do this."
     },
     "ArchiveSection": {
         "starting": "Starting...",

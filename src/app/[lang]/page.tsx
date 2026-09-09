@@ -5,9 +5,11 @@ import { getObjectURL } from "@/utils/s3";
 import type { Item, Asset, Media } from "@/lib/types";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { verifyProducerSession } from "@/lib/dal";
 
 export default async function DatabasePage() {
     const t = await getTranslations("DatabasePage");
+    const isProducer = !!(await verifyProducerSession());
 
     const items = (await getEntries("items", "id,title")) as Item[] | null;
     const itemIds = (items ?? []).map((item) => item.id);
@@ -37,12 +39,14 @@ export default async function DatabasePage() {
 
     return (
         <div className="p-4">
-            <div className="mb-4 flex justify-end">
-                <Button
-                    nativeButton={false}
-                    render={<Link href="/new-item">{t("new-item")}</Link>}
-                />
-            </div>
+            {isProducer ?
+                <div className="mb-4 flex justify-end">
+                    <Button
+                        nativeButton={false}
+                        render={<Link href="/new-item">{t("new-item")}</Link>}
+                    />
+                </div>
+            :   null}
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {resolvedEntries.map(({ id, title, imageURL }) => (
                     <Link key={id} href={`/${id}`} className="h-full">

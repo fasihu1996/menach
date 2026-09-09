@@ -8,8 +8,9 @@ import Link from "next/link";
 import LanguageSelector from "./LanguageSelector";
 import { ButtonGroup } from "./ui/button-group";
 import { useTranslations } from "next-intl";
+import { logout } from "@/app/[lang]/auth/login/actions";
 
-export default function Navbar() {
+export default function Navbar({ isProducer }: { isProducer: boolean }) {
     const t = useTranslations("Navbar");
     return (
         <nav className="bg-background/95 sticky top-0 z-50 w-full border-b backdrop-blur">
@@ -36,6 +37,20 @@ export default function Navbar() {
                             <Link href="/collections">{t("collections")}</Link>
                         }
                     />
+                    {isProducer ?
+                        <form action={logout}>
+                            <Button variant="ghost" type="submit">
+                                {t("logout")}
+                            </Button>
+                        </form>
+                    :   <Button
+                            variant="ghost"
+                            nativeButton={false}
+                            render={
+                                <Link href="/auth/login">{t("login")}</Link>
+                            }
+                        />
+                    }
                     <ButtonGroup>
                         <LanguageSelector />
                         <ThemeToggle />

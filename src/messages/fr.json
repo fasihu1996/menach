@@ -15,7 +15,17 @@
     },
     "Navbar": {
         "items": "Éléments",
-        "collections": "Collections"
+        "collections": "Collections",
+        "login": "Connexion",
+        "logout": "Déconnexion"
+    },
+    "Login": {
+        "login": "Connexion",
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "submit": "Connexion",
+        "signing-in": "Connexion en cours...",
+        "sign-in-required": "Vous devez être connecté pour effectuer cette action."
     },
     "ArchiveSection": {
         "starting": "Début...",

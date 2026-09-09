@@ -3,6 +3,8 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { insertRow } from "@/utils/supabase";
+import { verifyProducerSession } from "@/lib/dal";
+import { getTranslations } from "next-intl/server";
 import type { Collection } from "@/lib/types";
 
 export type CreateCollectionState = {
@@ -13,6 +15,12 @@ export async function createCollection(
     _prevState: CreateCollectionState,
     formData: FormData,
 ): Promise<CreateCollectionState> {
+    const session = await verifyProducerSession();
+    if (!session) {
+        const t = await getTranslations("Login");
+        return { error: t("sign-in-required") };
+    }
+
     const title = (formData.get("title") as string)?.trim();
     const institution = (formData.get("institution") as string)?.trim();
     const city = (formData.get("city") as string)?.trim();

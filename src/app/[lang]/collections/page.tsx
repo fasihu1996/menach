@@ -4,9 +4,11 @@ import { getEntries } from "@/utils/supabase";
 import type { Collection, Item } from "@/lib/types";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { verifyProducerSession } from "@/lib/dal";
 
 export default async function CollectionsPage() {
     const t = await getTranslations("Collections");
+    const isProducer = !!(await verifyProducerSession());
     const collections = (await getEntries(
         "collections",
         "id,title,institution,city,country",
@@ -26,16 +28,18 @@ export default async function CollectionsPage() {
 
     return (
         <div className="p-4">
-            <div className="mb-4 flex justify-end">
-                <Button
-                    nativeButton={false}
-                    render={
-                        <Link href="/new-collection">
-                            {t("new-collection")}
-                        </Link>
-                    }
-                />
-            </div>
+            {isProducer ?
+                <div className="mb-4 flex justify-end">
+                    <Button
+                        nativeButton={false}
+                        render={
+                            <Link href="/new-collection">
+                                {t("new-collection")}
+                            </Link>
+                        }
+                    />
+                </div>
+            :   null}
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {resolvedEntries.map(
                     ({ id, title, institution, city, country, itemCount }) => (

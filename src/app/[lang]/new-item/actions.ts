@@ -3,6 +3,8 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { insertRow } from "@/utils/supabase";
+import { verifyProducerSession } from "@/lib/dal";
+import { getTranslations } from "next-intl/server";
 import type { Item } from "@/lib/types";
 
 export type CreateItemState = {
@@ -13,6 +15,12 @@ export async function createItem(
     _prevState: CreateItemState,
     formData: FormData,
 ): Promise<CreateItemState> {
+    const session = await verifyProducerSession();
+    if (!session) {
+        const t = await getTranslations("Login");
+        return { error: t("sign-in-required") };
+    }
+
     const title = (formData.get("title") as string)?.trim();
     const description = (formData.get("description") as string)?.trim();
     if (!title || !description) {

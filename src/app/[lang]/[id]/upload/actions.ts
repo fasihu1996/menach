@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { insertRow } from "@/utils/supabase";
 import { putFile } from "@/utils/s3";
+import { verifyProducerSession } from "@/lib/dal";
+import { getTranslations } from "next-intl/server";
 import type { Media, MediaType } from "@/lib/types";
 
 export type UploadMediaState = {
@@ -15,6 +17,12 @@ export async function uploadMedia(
     _prevState: UploadMediaState,
     formData: FormData,
 ): Promise<UploadMediaState> {
+    const session = await verifyProducerSession();
+    if (!session) {
+        const t = await getTranslations("Login");
+        return { error: t("sign-in-required") };
+    }
+
     const blockIds = ((formData.get("blockIds") as string) || "")
         .split(",")
         .filter(Boolean);

@@ -1,9 +1,17 @@
+import { redirect } from "next/navigation";
 import { getEntries } from "@/utils/supabase";
 import type { Collection } from "@/lib/types";
 import NewItemForm from "./NewItemForm";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
+import { verifyProducerSession } from "@/lib/dal";
 
 export default async function NewItemPage() {
+    const session = await verifyProducerSession();
+    if (!session) {
+        const locale = await getLocale();
+        redirect(`/${locale}/auth/login?next=/${locale}/new-item`);
+    }
+
     const t = await getTranslations("DatabasePage");
     const collections = (await getEntries("collections", "id,title")) as
         | Collection[]

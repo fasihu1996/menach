@@ -12,6 +12,7 @@ import type { Item, Collection, Asset, Media } from "@/lib/types";
 import { getTranslations } from "next-intl/server";
 import ItemMap from "@/components/ItemMap";
 import { Suspense } from "react";
+import { verifyProducerSession } from "@/lib/dal";
 
 export default async function ItemDetailPage({
     params,
@@ -21,6 +22,8 @@ export default async function ItemDetailPage({
     const t = await getTranslations("Detailpage");
     const { id } = await params;
     const itemId = Number(id);
+
+    const isProducer = !!(await verifyProducerSession());
 
     const item = await getById<Item>(
         "items",
@@ -53,7 +56,8 @@ export default async function ItemDetailPage({
             { id: mediaIds },
         )) as Media[] | null) ?? [];
 
-    const activeTransfer = await getCurrentTransferForItem(item.id);
+    const activeTransfer =
+        isProducer ? await getCurrentTransferForItem(item.id) : null;
     const outdatedArchive =
         activeTransfer?.status === "complete" &&
         assets.some(
@@ -69,25 +73,29 @@ export default async function ItemDetailPage({
                     {item.title}
                 </h1>
                 <div className="flex shrink-0 items-center gap-2">
-                    <ArchiveSection
-                        key={activeTransfer?.id ?? "none"}
-                        itemId={item.id}
-                        itemTitle={item.title}
-                        hasMedia={attachedMedia.length > 0}
-                        outdatedArchive={outdatedArchive}
-                        initialTransfer={activeTransfer}
-                    />
-                    <Button
-                        nativeButton={false}
-                        render={
-                            <Link href={`/${item.id}/upload`}>
-                                <UploadIcon data-icon="inline-start" />
-                                <span className="sr-only sm:not-sr-only">
-                                    {t("upload")}
-                                </span>
-                            </Link>
-                        }
-                    />
+                    {isProducer ?
+                        <>
+                            <ArchiveSection
+                                key={activeTransfer?.id ?? "none"}
+                                itemId={item.id}
+                                itemTitle={item.title}
+                                hasMedia={attachedMedia.length > 0}
+                                outdatedArchive={outdatedArchive}
+                                initialTransfer={activeTransfer}
+                            />
+                            <Button
+                                nativeButton={false}
+                                render={
+                                    <Link href={`/${item.id}/upload`}>
+                                        <UploadIcon data-icon="inline-start" />
+                                        <span className="sr-only sm:not-sr-only">
+                                            {t("upload")}
+                                        </span>
+                                    </Link>
+                                }
+                            />
+                        </>
+                    :   null}
                 </div>
             </div>
             <Separator />

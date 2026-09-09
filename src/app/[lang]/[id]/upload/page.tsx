@@ -1,16 +1,24 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getById } from "@/utils/supabase";
 import type { Item } from "@/lib/types";
 import UploadForm from "./UploadForm";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
+import { verifyProducerSession } from "@/lib/dal";
 
 export default async function UploadMediaPage({
     params,
 }: {
     params: Promise<{ id: string }>;
 }) {
-    const t = await getTranslations("UploadPage");
     const { id } = await params;
+
+    const session = await verifyProducerSession();
+    if (!session) {
+        const locale = await getLocale();
+        redirect(`/${locale}/auth/login?next=/${locale}/${id}/upload`);
+    }
+
+    const t = await getTranslations("UploadPage");
     const itemId = Number(id);
 
     const item = await getById<Item>("items", "id,title", itemId);

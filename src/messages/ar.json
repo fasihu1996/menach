@@ -15,7 +15,17 @@
     },
     "Navbar": {
         "items": "مادة",
-        "collections": "المجموعات"
+        "collections": "المجموعات",
+        "login": "تسجيل الدخول",
+        "logout": "تسجيل الخروج"
+    },
+    "Login": {
+        "login": "تسجيل الدخول",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "submit": "تسجيل الدخول",
+        "signing-in": "...جارٍ تسجيل الدخول",
+        "sign-in-required": "يجب عليك تسجيل الدخول للقيام بذلك."
     },
     "ArchiveSection": {
         "starting": "...شروع",
