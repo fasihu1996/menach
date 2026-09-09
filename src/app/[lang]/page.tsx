@@ -9,6 +9,7 @@ import { verifyProducerSession } from "@/lib/dal";
 
 export default async function DatabasePage() {
     const t = await getTranslations("DatabasePage");
+    const tNav = await getTranslations("Navbar");
     const isProducer = !!(await verifyProducerSession());
 
     const items = (await getEntries("items", "id,title")) as Item[] | null;
@@ -39,14 +40,17 @@ export default async function DatabasePage() {
 
     return (
         <div className="p-4">
-            {isProducer ?
-                <div className="mb-4 flex justify-end">
+            <div className="mb-4 flex items-center justify-between gap-4">
+                <h1 className="font-heading text-2xl font-bold">
+                    {tNav("items")}
+                </h1>
+                {isProducer ?
                     <Button
                         nativeButton={false}
                         render={<Link href="/new-item">{t("new-item")}</Link>}
                     />
-                </div>
-            :   null}
+                :   null}
+            </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {resolvedEntries.map(({ id, title, imageURL }) => (
                     <Link key={id} href={`/${id}`} className="h-full">
