@@ -26,7 +26,7 @@ export default async function SearchPage({
 
     const items = (await getEntries(
         "items",
-        "id,title,description,external_id",
+        "id,title,description,date,external_id",
     )) as Item[] | null;
     const collections = (await getEntries(
         "collections",
@@ -42,7 +42,14 @@ export default async function SearchPage({
     ];
 
     const fuse = new Fuse(docs, {
-        keys: ["title", "description", "institution", "city", "country"],
+        keys: [
+            "title",
+            "description",
+            "institution",
+            "city",
+            "country",
+            "date",
+        ],
         threshold: 0.4,
         ignoreLocation: true,
     });
