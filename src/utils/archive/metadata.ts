@@ -24,6 +24,12 @@ export function cleanFilename(storageKey: string, taken: Set<string>): string {
     taken.add(candidate);
     return candidate;
 }
+function formatCoverage(item: PackageItem): string {
+    if (item.latitude == null || item.longitude == null) {
+        return "";
+    }
+    return `east=${item.longitude}; north=${item.latitude}; units=degrees`;
+}
 
 const METADATA_CSV_COLUMNS = [
     "filename",
@@ -33,6 +39,7 @@ const METADATA_CSV_COLUMNS = [
     "dc.type",
     "dc.identifier",
     "dc.relation",
+    "dc.coverage",
 ];
 
 export function buildMetadataCsv(
@@ -48,6 +55,7 @@ export function buildMetadataCsv(
             "dc.type": "",
             "dc.identifier": item.externalId,
             "dc.relation": item.collectionTitle ?? "",
+            "dc.coverage": formatCoverage(item),
         },
         ...entries.map((entry) => ({
             filename: entry.objectPath,
@@ -57,6 +65,7 @@ export function buildMetadataCsv(
             "dc.type": entry.mediaType,
             "dc.identifier": entry.localIdentifier,
             "dc.relation": "",
+            "dc.coverage": "",
         })),
     ];
 

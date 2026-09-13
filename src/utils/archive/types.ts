@@ -44,6 +44,8 @@ export type PackageItem = {
     description: string;
     date: string | null;
     collectionTitle: string | null;
+    latitude: number | null;
+    longitude: number | null;
 };
 
 export type PackageMediaEntry = {

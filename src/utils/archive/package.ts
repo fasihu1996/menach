@@ -48,7 +48,9 @@ export async function buildTransferPackage(
 
     const { data: item } = await supabase
         .from("items")
-        .select("id,title,description,date,collection,external_id")
+        .select(
+            "id,title,description,date,collection,external_id,latitude,longitude",
+        )
         .eq("id", itemId)
         .maybeSingle();
     const typedItem = item as Item | null;
@@ -125,6 +127,8 @@ export async function buildTransferPackage(
             description: typedItem.description,
             date: typedItem.date,
             collectionTitle: collection?.title ?? null,
+            latitude: typedItem.latitude,
+            longitude: typedItem.longitude,
         };
 
         await Bun.write(
