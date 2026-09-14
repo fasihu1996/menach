@@ -3,12 +3,6 @@
         "title": "MENACH",
         "description": "Digitales kulturelles Erbe im Nahen Osten und Nordafrika"
     },
-    "LangSelector": {
-        "ar": "Arabisch",
-        "fr": "Französisch",
-        "en": "Englisch",
-        "de": "Deutsch"
-    },
     "DatabasePage": {
         "new-item": "Neues Objekt",
         "no-items-found": "Keine Objekte gefunden."

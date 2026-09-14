@@ -3,12 +3,6 @@
         "title": "MENACH",
         "description": "Digital Cultural Heritage in Middle East and North Africa"
     },
-    "LangSelector": {
-        "ar": "Arabic",
-        "fr": "French",
-        "en": "English",
-        "de": "German"
-    },
     "DatabasePage": {
         "new-item": "New item",
         "no-items-found": "No items found."

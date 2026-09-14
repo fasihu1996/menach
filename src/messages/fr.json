@@ -3,12 +3,6 @@
         "title": "MENACH",
         "description": "Patrimoine culturel numérique au Moyen-Orient et en Afrique du Nord "
     },
-    "LangSelector": {
-        "ar": "Arabe",
-        "fr": "Français",
-        "en": "Anglais",
-        "de": "Allemand"
-    },
     "DatabasePage": {
         "new-item": "Nouvel article",
         "no-items-found": "Aucun élément trouvé."

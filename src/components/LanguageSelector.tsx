@@ -8,12 +8,11 @@ import {
     DropdownMenuTrigger,
     DropdownMenuCheckboxItem,
 } from "./ui/dropdown-menu";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import { routing } from "@/i18n/routing";
+import { routing, localeNames } from "@/i18n/routing";
 
 export default function LanguageSelector() {
-    const t = useTranslations("LangSelector");
     const pathname = usePathname();
     const router = useRouter();
     const currentLocale = useLocale();
@@ -39,7 +38,7 @@ export default function LanguageSelector() {
                             onClick={() => handleSelect(locale)}
                             checked={locale == currentLocale}
                         >
-                            {t(locale)}
+                            {localeNames[locale]}
                         </DropdownMenuCheckboxItem>
                     ))}
                 </DropdownMenuContent>
