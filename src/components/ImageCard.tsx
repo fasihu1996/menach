@@ -22,6 +22,7 @@ export default function ImageCard({ title, imageURL }: ImageCardProps) {
                                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                                 className="object-cover"
                                 unoptimized
+                                loading="eager"
                             />
                         </div>
                     :   <div className="flex aspect-square w-full items-center justify-center rounded-md border border-dashed text-sm text-muted-foreground">

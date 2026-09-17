@@ -50,6 +50,7 @@ export default function MediaViewer({ media }: MediaViewerProps) {
                             sizes="(min-width: 1024px) 800px, 100vw"
                             className="object-contain"
                             unoptimized
+                            loading="eager"
                         />
                     : selected.media_type === "MovingImage" && selected.url ?
                         <video
