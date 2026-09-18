@@ -19,7 +19,9 @@
         "password": "Passwort",
         "submit": "Anmelden",
         "signing-in": "Anmeldung läuft...",
-        "sign-in-required": "Sie müssen für diese Aktion angemeldet sein."
+        "sign-in-required": "Sie müssen für diese Aktion angemeldet sein.",
+        "err-required": "E-Mail und Passwort sind erforderlich.",
+        "err-invalid-creds": "Ungültige E-Mail-Adresse oder ungültiges Passwort."
     },
     "ArchiveSection": {
         "starting": "Startet...",

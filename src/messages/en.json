@@ -19,7 +19,9 @@
         "password": "Password",
         "submit": "Log in",
         "signing-in": "Logging in...",
-        "sign-in-required": "You must be signed in to do this."
+        "sign-in-required": "You must be signed in to do this.",
+        "err-required": "Email and password are required.",
+        "err-invalid-creds": "Invalid email or password."
     },
     "ArchiveSection": {
         "starting": "Starting...",

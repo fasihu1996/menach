@@ -19,7 +19,9 @@
         "password": "Mot de passe",
         "submit": "Connexion",
         "signing-in": "Connexion en cours...",
-        "sign-in-required": "Vous devez être connecté pour effectuer cette action."
+        "sign-in-required": "Vous devez être connecté pour effectuer cette action.",
+        "err-required": "L'e-mail et le mot de passe sont requis.",
+        "err-invalid-creds": "E-mail ou mot de passe invalide."
     },
     "ArchiveSection": {
         "starting": "Début...",
