@@ -43,7 +43,6 @@ export default function Search({ className }: SearchProps) {
                 <Button
                     type="submit"
                     variant="default"
-                    aria-label="Search"
                     size="icon"
                     className="absolute inset-e-0"
                 >

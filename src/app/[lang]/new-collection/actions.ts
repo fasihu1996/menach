@@ -21,13 +21,15 @@ export async function createCollection(
         return { error: t("sign-in-required") };
     }
 
+    const t = await getTranslations("CollectionsForm");
+
     const title = (formData.get("title") as string)?.trim();
     const institution = (formData.get("institution") as string)?.trim();
     const city = (formData.get("city") as string)?.trim();
     const country = (formData.get("country") as string)?.trim();
     if (!title || !institution || !city || !country) {
         return {
-            error: "Title, institution, city, and country are required.",
+            error: t("err-required"),
         };
     }
 

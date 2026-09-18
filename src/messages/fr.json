@@ -49,7 +49,10 @@
         "remove": "Supprimer",
         "add-another": "Ajouter un autre fichier",
         "upload": "Télécharger",
-        "uploading": "Téléchargement ..."
+        "uploading": "Téléchargement ...",
+        "err-no-file": "Ajoutez au moins un fichier.",
+        "err-missing-fields": "Chaque fichier doit avoir un titre et un type de média.",
+        "err-no-uploads": "Aucun fichier n'a été joint."
     },
     "Collections": {
         "new-collection": "Nouvelle collection",
@@ -64,7 +67,8 @@
         "city": "Ville",
         "country": "Pays",
         "creating": "Créant...",
-        "create": "Créer une collection"
+        "create": "Créer une collection",
+        "err-required": "Le titre, l'institution, la ville et le pays sont requis."
     },
     "ItemForm": {
         "title": "Titre",
@@ -77,8 +81,10 @@
         "date-free-text-placeholder": "ex. 4000 av. J.-C.; vers 1200; Annee 0",
         "collection": "Collection",
         "creating": "Créant...",
-        "create": "Créer une élément"
-    }, 
+        "create": "Créer une élément",
+        "err-required": "Le titre et la description sont requis.",
+        "err-location": "Indiquez à la fois la latitude et la longitude, ou aucune des deux."
+    },
     "Search": {
         "results": "Résultats de la recherche pour ",
         "all": "Tous les éléments et collections",

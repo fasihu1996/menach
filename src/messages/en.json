@@ -49,7 +49,10 @@
         "remove": "Remove",
         "add-another": "Add another file",
         "upload": "Upload",
-        "uploading": "Uploading ..."
+        "uploading": "Uploading ...",
+        "err-no-file": "Add at least one file.",
+        "err-missing-fields": "Each file needs a title and a media type.",
+        "err-no-uploads": "No files were attached."
     },
     "Collections": {
         "new-collection": "New collection",
@@ -64,7 +67,8 @@
         "city": "City",
         "country": "Country",
         "creating": "Creating...",
-        "create": "Create collection"
+        "create": "Create collection",
+        "err-required": "Title, institution, city, and country are required."
     },
     "ItemForm": {
         "title": "Title",
@@ -77,8 +81,10 @@
         "date-free-text-placeholder": "e.g. 4000 BC; circa 1200 AD; Year 0",
         "collection": "Collection",
         "creating": "Creating...",
-        "create": "Create item"
-    }, 
+        "create": "Create item",
+        "err-required": "Title and description are required.",
+        "err-location": "Provide both latitude and longitude, or neither."
+    },
     "Search": {
         "results": "Search results for ",
         "all": "All items and collections",

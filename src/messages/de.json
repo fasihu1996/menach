@@ -49,7 +49,10 @@
         "remove": "Entfernen",
         "add-another": "Weitere Datei hinzufügen",
         "upload": "Hochladen",
-        "uploading": "Wird hochgeladen..."
+        "uploading": "Wird hochgeladen...",
+        "err-no-file": "Bitte mindestens eine Datei hinzufügen.",
+        "err-missing-fields": "Jede Datei benötigt einen Titel und einen Medientyp.",
+        "err-no-uploads": "Es wurden keine Dateien angehängt."
     },
     "Collections": {
         "new-collection": "Neue Sammlung",
@@ -64,7 +67,8 @@
         "city": "Stadt",
         "country": "Land",
         "creating": "Wird erstellt...",
-        "create": "Neue Sammlung erstellen"
+        "create": "Neue Sammlung erstellen",
+        "err-required": "Titel, Institution, Stadt und Land sind erforderlich."
     },
     "ItemForm": {
         "title": "Titel",
@@ -77,8 +81,10 @@
         "date-free-text-placeholder": "z. B. 4000 v. Chr.; um 1200; Jahr 0",
         "collection": "Sammlung",
         "creating": "Wird erstellt...",
-        "create": "Neues Objekt erstellen"
-    }, 
+        "create": "Neues Objekt erstellen",
+        "err-required": "Titel und Beschreibung sind erforderlich.",
+        "err-location": "Bitte sowohl Breiten- als auch Längengrad angeben oder beide leer lassen."
+    },
     "Search": {
         "results": "Suchergebnisse für ",
         "all": "Alle Objekte und Sammlungen",

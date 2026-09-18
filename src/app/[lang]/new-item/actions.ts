@@ -21,10 +21,12 @@ export async function createItem(
         return { error: t("sign-in-required") };
     }
 
+    const t = await getTranslations("ItemForm");
+
     const title = (formData.get("title") as string)?.trim();
     const description = (formData.get("description") as string)?.trim();
     if (!title || !description) {
-        return { error: "Title and description are required." };
+        return { error: t("err-required") };
     }
 
     const date = (formData.get("date") as string) || null;
@@ -41,7 +43,7 @@ export async function createItem(
 
         if (!latitudeRaw || !longitudeRaw) {
             return {
-                error: "Provide both latitude and longitude, or neither.",
+                error: t("err-location"),
             };
         }
 
