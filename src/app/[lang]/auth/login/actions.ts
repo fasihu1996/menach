@@ -2,7 +2,6 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/server";
-import { getTranslations } from "next-intl/server";
 
 export type LoginState = {
     error?: string;
@@ -16,14 +15,12 @@ export async function login(
     _prevState: LoginState,
     formData: FormData,
 ): Promise<LoginState> {
-    const t = await getTranslations("Login");
-
     const email = (formData.get("email") as string)?.trim();
     const password = formData.get("password") as string;
     const next = formData.get("next") as string | null;
 
     if (!email || !password) {
-        return { error: t("err-required") };
+        return { error: "Email and password are required." };
     }
 
     const supabase = await createClient();
@@ -33,7 +30,7 @@ export async function login(
     });
 
     if (error) {
-        return { error: t("err-invalid-creds") };
+        return { error: "Invalid email or password." };
     }
 
     redirect(safeNext(next));

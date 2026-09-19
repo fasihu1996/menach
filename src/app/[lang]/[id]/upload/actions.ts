@@ -5,7 +5,6 @@ import { revalidatePath } from "next/cache";
 import { insertRow } from "@/utils/supabase";
 import { putFile } from "@/utils/s3";
 import { verifyProducerSession } from "@/lib/dal";
-import { getTranslations } from "next-intl/server";
 import type { Media, MediaType } from "@/lib/types";
 
 export type UploadMediaState = {
@@ -19,18 +18,15 @@ export async function uploadMedia(
 ): Promise<UploadMediaState> {
     const session = await verifyProducerSession();
     if (!session) {
-        const t = await getTranslations("Login");
-        return { error: t("sign-in-required") };
+        return { error: "You must be signed in to do this." };
     }
-
-    const t = await getTranslations("UploadForm");
 
     const blockIds = ((formData.get("blockIds") as string) || "")
         .split(",")
         .filter(Boolean);
 
     if (blockIds.length === 0) {
-        return { error: t("err-no-file") };
+        return { error: "Add at least one file." };
     }
 
     let uploadedCount = 0;
@@ -46,7 +42,7 @@ export async function uploadMedia(
         const mediaType = formData.get(`mediaType-${blockId}`) as MediaType;
 
         if (!title || !mediaType) {
-            return { error: t("err-missing-fields") };
+            return { error: "Each file needs a title and a media type." };
         }
 
         const storageKey = `${crypto.randomUUID()}-${file.name}`;
@@ -65,7 +61,7 @@ export async function uploadMedia(
     }
 
     if (uploadedCount === 0) {
-        return { error: t("err-no-uploads") };
+        return { error: "No files were attached." };
     }
 
     revalidatePath(`/${itemId}`);

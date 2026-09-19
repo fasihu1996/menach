@@ -18,10 +18,7 @@
         "email": "E-mail",
         "password": "Mot de passe",
         "submit": "Connexion",
-        "signing-in": "Connexion en cours...",
-        "sign-in-required": "Vous devez être connecté pour effectuer cette action.",
-        "err-required": "L'e-mail et le mot de passe sont requis.",
-        "err-invalid-creds": "E-mail ou mot de passe invalide."
+        "signing-in": "Connexion en cours..."
     },
     "ArchiveSection": {
         "starting": "Début...",
@@ -51,10 +48,7 @@
         "remove": "Supprimer",
         "add-another": "Ajouter un autre fichier",
         "upload": "Télécharger",
-        "uploading": "Téléchargement ...",
-        "err-no-file": "Ajoutez au moins un fichier.",
-        "err-missing-fields": "Chaque fichier doit avoir un titre et un type de média.",
-        "err-no-uploads": "Aucun fichier n'a été joint."
+        "uploading": "Téléchargement ..."
     },
     "Collections": {
         "new-collection": "Nouvelle collection",
@@ -69,8 +63,7 @@
         "city": "Ville",
         "country": "Pays",
         "creating": "Créant...",
-        "create": "Créer une collection",
-        "err-required": "Le titre, l'institution, la ville et le pays sont requis."
+        "create": "Créer une collection"
     },
     "ItemForm": {
         "title": "Titre",
@@ -83,9 +76,7 @@
         "date-free-text-placeholder": "ex. 4000 av. J.-C.; vers 1200; Annee 0",
         "collection": "Collection",
         "creating": "Créant...",
-        "create": "Créer une élément",
-        "err-required": "Le titre et la description sont requis.",
-        "err-location": "Indiquez à la fois la latitude et la longitude, ou aucune des deux."
+        "create": "Créer une élément"
     },
     "Search": {
         "results": "Résultats de la recherche pour ",

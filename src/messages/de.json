@@ -18,10 +18,7 @@
         "email": "E-Mail",
         "password": "Passwort",
         "submit": "Anmelden",
-        "signing-in": "Anmeldung läuft...",
-        "sign-in-required": "Sie müssen für diese Aktion angemeldet sein.",
-        "err-required": "E-Mail und Passwort sind erforderlich.",
-        "err-invalid-creds": "Ungültige E-Mail-Adresse oder ungültiges Passwort."
+        "signing-in": "Anmeldung läuft..."
     },
     "ArchiveSection": {
         "starting": "Startet...",
@@ -51,10 +48,7 @@
         "remove": "Entfernen",
         "add-another": "Weitere Datei hinzufügen",
         "upload": "Hochladen",
-        "uploading": "Wird hochgeladen...",
-        "err-no-file": "Bitte mindestens eine Datei hinzufügen.",
-        "err-missing-fields": "Jede Datei benötigt einen Titel und einen Medientyp.",
-        "err-no-uploads": "Es wurden keine Dateien angehängt."
+        "uploading": "Wird hochgeladen..."
     },
     "Collections": {
         "new-collection": "Neue Sammlung",
@@ -69,8 +63,7 @@
         "city": "Stadt",
         "country": "Land",
         "creating": "Wird erstellt...",
-        "create": "Neue Sammlung erstellen",
-        "err-required": "Titel, Institution, Stadt und Land sind erforderlich."
+        "create": "Neue Sammlung erstellen"
     },
     "ItemForm": {
         "title": "Titel",
@@ -83,9 +76,7 @@
         "date-free-text-placeholder": "z. B. 4000 v. Chr.; um 1200; Jahr 0",
         "collection": "Sammlung",
         "creating": "Wird erstellt...",
-        "create": "Neues Objekt erstellen",
-        "err-required": "Titel und Beschreibung sind erforderlich.",
-        "err-location": "Bitte sowohl Breiten- als auch Längengrad angeben oder beide leer lassen."
+        "create": "Neues Objekt erstellen"
     },
     "Search": {
         "results": "Suchergebnisse für ",

@@ -18,10 +18,7 @@
         "email": "Email",
         "password": "Password",
         "submit": "Log in",
-        "signing-in": "Logging in...",
-        "sign-in-required": "You must be signed in to do this.",
-        "err-required": "Email and password are required.",
-        "err-invalid-creds": "Invalid email or password."
+        "signing-in": "Logging in..."
     },
     "ArchiveSection": {
         "starting": "Starting...",
@@ -51,10 +48,7 @@
         "remove": "Remove",
         "add-another": "Add another file",
         "upload": "Upload",
-        "uploading": "Uploading ...",
-        "err-no-file": "Add at least one file.",
-        "err-missing-fields": "Each file needs a title and a media type.",
-        "err-no-uploads": "No files were attached."
+        "uploading": "Uploading ..."
     },
     "Collections": {
         "new-collection": "New collection",
@@ -69,8 +63,7 @@
         "city": "City",
         "country": "Country",
         "creating": "Creating...",
-        "create": "Create collection",
-        "err-required": "Title, institution, city, and country are required."
+        "create": "Create collection"
     },
     "ItemForm": {
         "title": "Title",
@@ -83,9 +76,7 @@
         "date-free-text-placeholder": "e.g. 4000 BC; circa 1200 AD; Year 0",
         "collection": "Collection",
         "creating": "Creating...",
-        "create": "Create item",
-        "err-required": "Title and description are required.",
-        "err-location": "Provide both latitude and longitude, or neither."
+        "create": "Create item"
     },
     "Search": {
         "results": "Search results for ",

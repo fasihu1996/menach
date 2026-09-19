@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { insertRow } from "@/utils/supabase";
 import { verifyProducerSession } from "@/lib/dal";
-import { getTranslations } from "next-intl/server";
 import type { Item } from "@/lib/types";
 
 export type CreateItemState = {
@@ -17,16 +16,13 @@ export async function createItem(
 ): Promise<CreateItemState> {
     const session = await verifyProducerSession();
     if (!session) {
-        const t = await getTranslations("Login");
-        return { error: t("sign-in-required") };
+        return { error: "You must be signed in to do this." };
     }
-
-    const t = await getTranslations("ItemForm");
 
     const title = (formData.get("title") as string)?.trim();
     const description = (formData.get("description") as string)?.trim();
     if (!title || !description) {
-        return { error: t("err-required") };
+        return { error: "Title and description are required." };
     }
 
     const date = (formData.get("date") as string) || null;
@@ -43,7 +39,7 @@ export async function createItem(
 
         if (!latitudeRaw || !longitudeRaw) {
             return {
-                error: t("err-location"),
+                error: "Provide both latitude and longitude, or neither.",
             };
         }
 

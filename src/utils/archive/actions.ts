@@ -4,7 +4,6 @@ import { revalidatePath } from "next/cache";
 import { createQueuedTransfer, getActiveTransferForItem } from "./transfer";
 import { routing } from "@/i18n/routing";
 import { verifyProducerSession } from "@/lib/dal";
-import { getTranslations } from "next-intl/server";
 
 export type StartArchivalTransferState = { error?: string } | null;
 
@@ -15,8 +14,7 @@ export async function startArchivalTransfer(
 ): Promise<StartArchivalTransferState> {
     const session = await verifyProducerSession();
     if (!session) {
-        const t = await getTranslations("Login");
-        return { error: t("sign-in-required") };
+        return { error: "You must be signed in to do this." };
     }
 
     const existing = await getActiveTransferForItem(itemId);
