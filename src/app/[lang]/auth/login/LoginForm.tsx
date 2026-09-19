@@ -16,12 +16,16 @@ export default function LoginForm({ next }: { next?: string }) {
             <input type="hidden" name="next" value={next ?? ""} />
 
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="email">{t("email")}</Label>
+                <Label htmlFor="email" required>
+                    {t("email")}
+                </Label>
                 <Input id="email" name="email" type="email" required />
             </div>
 
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="password">{t("password")}</Label>
+                <Label htmlFor="password" required>
+                    {t("password")}
+                </Label>
                 <Input
                     id="password"
                     name="password"

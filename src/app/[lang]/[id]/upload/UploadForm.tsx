@@ -55,7 +55,9 @@ export default function UploadForm({ itemId }: UploadFormProps) {
                 <Card key={id}>
                     <CardContent className="flex flex-col gap-3">
                         <div className="flex flex-col gap-1.5">
-                            <Label htmlFor={`file-${id}`}>{t("file")}</Label>
+                            <Label htmlFor={`file-${id}`} required>
+                                {t("file")}
+                            </Label>
                             {/* this cant be localised since its a native html element */}
                             <Input
                                 id={`file-${id}`}
@@ -66,7 +68,9 @@ export default function UploadForm({ itemId }: UploadFormProps) {
                         </div>
 
                         <div className="flex flex-col gap-1.5">
-                            <Label htmlFor={`title-${id}`}>{t("title")}</Label>
+                            <Label htmlFor={`title-${id}`} required>
+                                {t("title")}
+                            </Label>
                             <Input
                                 id={`title-${id}`}
                                 name={`title-${id}`}
@@ -94,7 +98,7 @@ export default function UploadForm({ itemId }: UploadFormProps) {
                         </div>
 
                         <div className="flex flex-col gap-1.5">
-                            <Label htmlFor={`mediaType-${id}`}>
+                            <Label htmlFor={`mediaType-${id}`} required>
                                 {t("media-type")}
                             </Label>
                             <Select

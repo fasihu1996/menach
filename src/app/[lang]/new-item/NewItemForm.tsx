@@ -34,12 +34,16 @@ export default function NewItemForm({ collections }: NewItemFormProps) {
     return (
         <form action={formAction} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="title">{t("title")}</Label>
+                <Label htmlFor="title" required>
+                    {t("title")}
+                </Label>
                 <Input id="title" name="title" required />
             </div>
 
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="description">{t("desc")}</Label>
+                <Label htmlFor="description" required>
+                    {t("desc")}
+                </Label>
                 <Textarea id="description" name="description" required />
             </div>
 

@@ -17,22 +17,30 @@ export default function NewCollectionForm() {
     return (
         <form action={formAction} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="title">{t("title")}</Label>
+                <Label htmlFor="title" required>
+                    {t("title")}
+                </Label>
                 <Input id="title" name="title" required />
             </div>
 
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="institution">{t("institution")}</Label>
+                <Label htmlFor="institution" required>
+                    {t("institution")}
+                </Label>
                 <Input id="institution" name="institution" required />
             </div>
 
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="city">{t("city")}</Label>
+                <Label htmlFor="city" required>
+                    {t("city")}
+                </Label>
                 <Input id="city" name="city" required />
             </div>
 
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="country">{t("country")}</Label>
+                <Label htmlFor="country" required>
+                    {t("country")}
+                </Label>
                 <Input id="country" name="country" required />
             </div>
 
