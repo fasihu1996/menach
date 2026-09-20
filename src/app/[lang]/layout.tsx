@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Noto_Sans, Noto_Sans_Arabic, Raleway } from "next/font/google";
+import { Noto_Sans, Noto_Sans_Arabic, Raleway } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
@@ -21,11 +21,6 @@ const notoSans = Noto_Sans({ subsets: ["latin"], variable: "--font-sans" });
 const notoSansArabic = Noto_Sans_Arabic({
     variable: "--font-sans-arabic",
     subsets: ["arabic"],
-});
-
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
 });
 
 export function generateStaticParams() {
@@ -55,7 +50,6 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
                 className={cn(
                     "h-full",
                     "antialiased",
-                    geistSans.variable,
                     "font-sans",
                     notoSans.variable,
                     notoSansArabic.variable,
