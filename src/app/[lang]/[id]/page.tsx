@@ -101,7 +101,7 @@ export default async function ItemDetailPage({
             <Separator />
             {item.description ?
                 <>
-                    <p className="text-sm text-foreground py-2">
+                    <p className="text-sm text-foreground py-2" dir="auto">
                         {item.description}
                     </p>
                     <Separator />
@@ -109,17 +109,26 @@ export default async function ItemDetailPage({
             :   null}
             <div className="flex flex-col gap-2 text-sm text-foreground">
                 {item.date ?
-                    <span>{t("date") + item.date}</span>
+                    <span>
+                        {t("date")}
+                        <span dir="auto">{item.date}</span>
+                    </span>
                 :   null}
                 {collection ?
-                    <span>{t("collection") + collection.title}</span>
+                    <span>
+                        {t("collection")}
+                        <span dir="auto">{collection.title}</span>
+                    </span>
                 :   null}
                 {item.latitude != null && item.longitude != null ?
                     <span>
-                        {t("location")} {Math.abs(item.latitude).toFixed(5)}°{" "}
-                        {item.latitude >= 0 ? "N" : "S"},{" "}
-                        {Math.abs(item.longitude).toFixed(5)}°{" "}
-                        {item.longitude >= 0 ? "E" : "W"}
+                        {t("location")}{" "}
+                        <span dir="auto">
+                            {Math.abs(item.latitude).toFixed(5)}°{" "}
+                            {item.latitude >= 0 ? "N" : "S"},{" "}
+                            {Math.abs(item.longitude).toFixed(5)}°{" "}
+                            {item.longitude >= 0 ? "E" : "W"}
+                        </span>
                     </span>
                 :   null}
             </div>

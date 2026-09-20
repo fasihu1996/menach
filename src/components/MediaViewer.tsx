@@ -90,8 +90,13 @@ export default function MediaViewer({ media }: MediaViewerProps) {
             </Card>
 
             <div>
-                <p className="font-medium">{selected.title}</p>
-                <p className="min-h-5 text-sm text-muted-foreground">
+                <p dir="auto" className="font-medium">
+                    {selected.title}
+                </p>
+                <p
+                    dir="auto"
+                    className="min-h-5 text-sm text-muted-foreground"
+                >
                     {selected.description}
                 </p>
             </div>

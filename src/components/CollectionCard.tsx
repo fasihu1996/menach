@@ -22,7 +22,7 @@ export default function CollectionCard({
     itemCount,
 }: CollectionCardProps) {
     return (
-        <Card className="h-full">
+        <Card className="h-full" dir="auto">
             <CardHeader>
                 <CardTitle className="truncate p-1 text-base font-bold">
                     {title}

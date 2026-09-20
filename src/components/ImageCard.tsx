@@ -10,7 +10,7 @@ interface ImageCardProps {
 export default function ImageCard({ title, imageURL }: ImageCardProps) {
     const t = useTranslations("Components");
     return (
-        <Card className="h-full">
+        <Card className="h-full" dir="auto">
             <CardHeader>
                 <div className="p-2">
                     {imageURL ?
