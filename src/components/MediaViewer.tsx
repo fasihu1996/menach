@@ -93,10 +93,7 @@ export default function MediaViewer({ media }: MediaViewerProps) {
                 <p dir="auto" className="font-medium">
                     {selected.title}
                 </p>
-                <p
-                    dir="auto"
-                    className="min-h-5 text-sm text-muted-foreground"
-                >
+                <p dir="auto" className="min-h-5 text-sm text-muted-foreground">
                     {selected.description}
                 </p>
             </div>
@@ -131,6 +128,7 @@ export default function MediaViewer({ media }: MediaViewerProps) {
                                         fill
                                         sizes="80px"
                                         className="object-cover"
+                                        unoptimized
                                     />
                                 :   <div className="flex h-full w-full items-center justify-center bg-muted">
                                         <EntryIcon className="size-6 text-muted-foreground" />

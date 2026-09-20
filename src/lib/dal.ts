@@ -15,7 +15,7 @@ export const verifyProducerSession = cache(
 
         return {
             userId: data.claims.sub,
-            email: (data.claims.email as string | undefined) ?? null,
+            email: data.claims.email ?? null,
         };
     },
 );
