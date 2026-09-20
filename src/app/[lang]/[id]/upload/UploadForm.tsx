@@ -22,7 +22,7 @@ const MEDIA_TYPES: MediaType[] = [
     "MovingImage",
     "Text",
     "Sound",
-    "Interactive",
+    "InteractiveResource",
     "Image",
 ];
 

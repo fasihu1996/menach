@@ -3,13 +3,13 @@ export type MediaType =
     | "MovingImage"
     | "Text"
     | "Sound"
-    | "Interactive"
+    | "InteractiveResource"
     | "Image";
 
 export type Item = {
     id: number;
     title: string;
-    description: string;
+    description: string | null;
     date: string | null;
     created_at: string;
     collection: number | null;

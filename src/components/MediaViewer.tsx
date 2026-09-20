@@ -16,7 +16,7 @@ const mediaTypeIcon: Partial<Record<MediaType, typeof FileText>> = {
     MovingImage: Film,
     Text: FileText,
     Sound: Music,
-    Interactive: Sparkles,
+    InteractiveResource: Sparkles,
 };
 
 export default function MediaViewer({ media }: MediaViewerProps) {

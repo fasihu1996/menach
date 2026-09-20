@@ -50,7 +50,7 @@ export function buildMetadataCsv(
         {
             filename: "objects",
             "dc.title": item.title,
-            "dc.description": item.description,
+            "dc.description": item.description ?? "",
             "dc.date": item.date ?? "",
             "dc.type": "",
             "dc.identifier": item.externalId,

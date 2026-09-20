@@ -41,7 +41,7 @@ export type ArchivematicaTransfer = {
 export type PackageItem = {
     externalId: string;
     title: string;
-    description: string;
+    description: string | null;
     date: string | null;
     collectionTitle: string | null;
     latitude: number | null;

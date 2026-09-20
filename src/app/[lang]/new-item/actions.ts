@@ -20,11 +20,11 @@ export async function createItem(
     }
 
     const title = (formData.get("title") as string)?.trim();
-    const description = (formData.get("description") as string)?.trim();
-    if (!title || !description) {
-        return { error: "Title and description are required." };
+    if (!title) {
+        return { error: "Title is required." };
     }
 
+    const description = (formData.get("description") as string)?.trim() || null;
     const date = (formData.get("date") as string) || null;
     const collectionRaw = formData.get("collection") as string;
     const collection = collectionRaw ? Number(collectionRaw) : null;

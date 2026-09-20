@@ -41,10 +41,8 @@ export default function NewItemForm({ collections }: NewItemFormProps) {
             </div>
 
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor="description" required>
-                    {t("desc")}
-                </Label>
-                <Textarea id="description" name="description" required />
+                <Label htmlFor="description">{t("desc")}</Label>
+                <Textarea id="description" name="description" />
             </div>
 
             <div className="flex flex-col gap-1.5">
