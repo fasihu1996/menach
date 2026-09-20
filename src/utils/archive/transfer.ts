@@ -33,9 +33,9 @@ export async function uploadTransferPackage(
     zipPath: string,
     transferName: string,
 ): Promise<{ key: string; relativePath: string }> {
-    const prefix = (process.env.ARCHIVE_S3_PREFIX ?? "").replace(/\/$/, "");
+    const prefix = process.env.ARCHIVE_S3_PREFIX ?? "";
     const relativePath = `${transferName}.zip`;
-    const key = prefix ? `${prefix}/${relativePath}` : relativePath;
+    const key = prefix ? `${prefix}${relativePath}` : relativePath;
 
     await transferSourceClient.write(key, Bun.file(zipPath));
     await waitUntilVisible(key);
