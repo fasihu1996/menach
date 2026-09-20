@@ -47,7 +47,7 @@ src/
 
 ### Data model (Supabase/Postgres)
 
-The schema isn't managed via local migrations in this repo — it lives directly in the Supabase project. The app expects these tables (see [`src/lib/types.ts`](src/lib/types.ts) and [`src/utils/archive/types.ts`](src/utils/archive/types.ts)):
+The schema is tracked as SQL migrations in [`supabase/migrations`](supabase/migrations), so `supabase start` (see below) creates a fresh local database with the same tables the production project uses. The app expects these tables (see [`src/lib/types.ts`](src/lib/types.ts) and [`src/utils/archive/types.ts`](src/utils/archive/types.ts)):
 
 | Table                           | Purpose                                                                                                                                                                 |
 | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -58,14 +58,14 @@ The schema isn't managed via local migrations in this repo — it lives directly
 | `archivematica_transfers`       | State machine for archival transfers (`queued` → `packaging` → `uploading` → `starting` → `transfer_processing` → `ingest_processing` → `complete`/`failed`/`rejected`) |
 | `archivematica_transfer_events` | Append-only event log per transfer                                                                                                                                      |
 
-Producer accounts are plain Supabase Auth users (email/password) — there's no self-service sign-up flow, so accounts must be created directly in the Supabase dashboard. Any authenticated user is treated as a "producer" and can create content and trigger archival transfers.
+Producer accounts are plain Supabase Auth users (email/password) — there's no self-service sign-up flow, so accounts must be created directly in the Supabase dashboard (or, for a local stack, in Supabase Studio at `http://localhost:54323`). Any authenticated user is treated as a "producer" and can create content and trigger archival transfers.
 
 ## Running locally
 
 ### Prerequisites
 
 - [Bun](https://bun.sh) 1.x
-- A Supabase project with the tables above (and the PostGIS extension enabled for `items.location`)
+- [Docker](https://docs.docker.com/get-docker/) and the [Supabase CLI](https://supabase.com/docs/guides/local-development/cli/getting-started) (`brew install supabase/tap/supabase`, `bunx supabase --version`, ...) — used to run Postgres + Auth locally from the migrations in [`supabase/migrations`](supabase/migrations)
 - An S3-compatible bucket for media (Garage, MinIO, AWS S3, ...)
 - Optional, only needed to exercise the archival flow: a second S3-compatible bucket for transfer packages, and an Archivematica instance with dashboard API access
 
@@ -77,10 +77,20 @@ Producer accounts are plain Supabase Auth users (email/password) — there's no 
     bun install
     ```
 
-2. Create a `.env.local` file in the project root with:
+2. Start the local Supabase stack (Postgres, Auth, Studio, PostgREST, ...). This applies every migration in `supabase/migrations` to a fresh database:
 
     ```bash
-    # Supabase
+    supabase start
+    ```
+
+    This prints an API URL and keys — use those in the next step. Studio (a local Supabase dashboard) is served at [http://localhost:54323](http://localhost:54323); create a producer account there under **Authentication**.
+
+    > On Windows, if `supabase start` fails to bind a port (`ports are not available: ... bind: An attempt was made to access a socket in a way forbidden by its access permissions`), Hyper-V/WSL has reserved that port. Either free it (`net stop winnat && net start winnat`, then retry) or change the conflicting port in `supabase/config.toml`.
+
+3. Create a `.env.local` file in the project root with:
+
+    ```bash
+    # Supabase — from `supabase start` output (or the dashboard, for the shared remote project)
     NEXT_PUBLIC_SUPABASE_URL=
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
     SUPABASE_SERVICE_ROLE_KEY=
@@ -107,7 +117,7 @@ Producer accounts are plain Supabase Auth users (email/password) — there's no 
     ARCHIVEMATICA_TRANSFER_SOURCE_LOCATION_UUID=
     ```
 
-3. Start the dev server:
+4. Start the dev server:
 
     ```bash
     bun dev
@@ -115,11 +125,22 @@ Producer accounts are plain Supabase Auth users (email/password) — there's no 
 
     Open [http://localhost:3000](http://localhost:3000) — it redirects to the default locale (`/de`).
 
-4. (Optional) To exercise archival transfers, run the worker in a separate terminal. It polls Supabase for queued/active transfers, packages an item's media into a zip, uploads it to the archive bucket, and drives it through Archivematica:
+5. (Optional) To exercise archival transfers, run the worker in a separate terminal. It polls Supabase for queued/active transfers, packages an item's media into a zip, uploads it to the archive bucket, and drives it through Archivematica:
 
     ```bash
     bun run worker
     ```
+
+### Changing the schema
+
+Create a new migration, edit the generated SQL file, then re-apply migrations to your local database to test it:
+
+```bash
+supabase migration new <description>
+supabase db reset   # drops and recreates the local DB, applying supabase/migrations in order
+```
+
+Once it's confirmed working locally, commit the migration file. Pushing it to the shared project (`supabase link --project-ref <ref>` then `supabase db push`) is a separate, deliberate step — coordinate with whoever manages the production project before doing that.
 
 ### Other scripts
 
